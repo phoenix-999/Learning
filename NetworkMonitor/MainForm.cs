@@ -166,6 +166,7 @@ namespace NetworkMonitor
         {
             string item;
             RegistryKey reg;
+            //Проверка HKEY_CURRENT_USER
             reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
             if(reg.GetValue(appName) != null)
             {
@@ -215,6 +216,7 @@ namespace NetworkMonitor
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             RegistryKey reg;
+            //Работает с HKEY_CURRENT_USER
             reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
             if (isAutoLoadApp)
             {
