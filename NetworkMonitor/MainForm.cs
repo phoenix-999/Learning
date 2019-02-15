@@ -11,11 +11,15 @@ using System.Net.NetworkInformation;
 using System.Threading;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using Microsoft.Win32;
 
 namespace NetworkMonitor
 {
     public partial class MainForm : Form
     {
+        private bool isAutoLoadApp;
+        const string appName = "NetworkMonitor";
+        string ExePath = System.Windows.Forms.Application.ExecutablePath;
         public static readonly int timeUpdate = 1000;
         private long lastReciveTraffic = 0;
         private long lastSentTraffic = 0;
@@ -160,8 +164,23 @@ namespace NetworkMonitor
 
         private void GetContextMenu()
         {
-             tableLayoutPanel1.ContextMenuStrip = contextMenuStrip1;
-             contextMenuStrip1.Show();
+            string item;
+            RegistryKey reg;
+            reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
+            if(reg.GetValue(appName) != null)
+            {
+                item = "Удалить из автозагрузки";
+                isAutoLoadApp = true;
+            }
+            else
+            {
+                item = "Добавить в автозагрузку";
+                isAutoLoadApp = false;
+            }
+
+            contextMenuStrip1.Items.Find("toolStripMenuItem2", false)[0].Text = item;
+            tableLayoutPanel1.ContextMenuStrip = contextMenuStrip1;
+            contextMenuStrip1.Show();
         }
 
         private void InitializeEvents()
@@ -191,6 +210,22 @@ namespace NetworkMonitor
         {
             lastReciveTraffic = 0;
             lastSentTraffic = 0;
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            RegistryKey reg;
+            reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
+            if (isAutoLoadApp)
+            {
+                reg.DeleteValue(appName);
+                MessageBox.Show(string.Format("{0} удалена из автозагрузки. При следующем запуске системы программа НЕ будет запущена.", appName));
+            }
+            else
+            {
+                reg.SetValue(appName, ExePath);
+                MessageBox.Show(string.Format("{0} добавлена в автозагрузку. При следующем запуске системы программа будет запущена.", appName));
+            }
         }
     }
 }
