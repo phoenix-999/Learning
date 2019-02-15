@@ -154,9 +154,9 @@ namespace NetworkMonitor
 
             lbUnicastPacketsSent.Text = ipStat.UnicastPacketsSent.ToString();
 
-            lbReciveAll.Text = string.Format("{0} Мбайт", mbByteRecive*0.125, 2);
+            lbReciveAll.Text = string.Format("{0} МБайт", mbByteRecive*0.125, 2);
 
-            lbSentAll.Text = string.Format("{0} Мбайт", mbByteSent*0.125, 2);
+            lbSentAll.Text = string.Format("{0} МБайт", mbByteSent*0.125, 2);
         }
 
 

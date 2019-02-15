@@ -637,7 +637,7 @@ namespace NetworkMonitor
             this.toolStripMenuItem1,
             this.toolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(121, 48);
             // 
             // toolStripMenuItem1
             // 
@@ -662,6 +662,7 @@ namespace NetworkMonitor
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Opacity = 0.7D;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Мониторинг трафика";
             this.flowLayoutPanel1.ResumeLayout(false);
