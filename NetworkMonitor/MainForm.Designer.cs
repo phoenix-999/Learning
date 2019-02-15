@@ -75,9 +75,6 @@ namespace NetworkMonitor
             this.tableLayoutPanel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            this.Opacity = 0.7;
-
-            
             // 
             // flowLayoutPanel1
             // 
@@ -86,7 +83,7 @@ namespace NetworkMonitor
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(736, 420);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(736, 394);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // cmbInterfaces
@@ -180,8 +177,6 @@ namespace NetworkMonitor
             this.lbSentAll.TabIndex = 35;
             this.lbSentAll.Text = "0";
             this.lbSentAll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-
-            
             // 
             // label17
             // 
@@ -644,7 +639,7 @@ namespace NetworkMonitor
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.toolStripMenuItem1.Text = "Close";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -652,11 +647,12 @@ namespace NetworkMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(736, 420);
+            this.ClientSize = new System.Drawing.Size(736, 394);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.Opacity = 0.7D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Мониторинг трафика";
             this.flowLayoutPanel1.ResumeLayout(false);
