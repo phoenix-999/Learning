@@ -121,7 +121,7 @@ namespace NetworkMonitor
             lastSentTraffic = mbByteSent;
             lastReciveTraffic = mbByteRecive;
 
-            lbSpeed.Text = string.Format("{0} Мбит/сек", (nic.Speed / Math.Pow(10, 6)).ToString());
+            lbSpeed.Text = string.Format("{0} Мбит/сек", Math.Round((nic.Speed / Math.Pow(10, 6)), 0).ToString());
             lbInterfaceType.Text = nic.NetworkInterfaceType.ToString();
             lbStatus.Text = nic.OperationalStatus.ToString();
 
@@ -150,9 +150,9 @@ namespace NetworkMonitor
 
             lbUnicastPacketsSent.Text = ipStat.UnicastPacketsSent.ToString();
 
-            lbReciveAll.Text = string.Format("{0} Мбит", mbByteRecive, 2);
+            lbReciveAll.Text = string.Format("{0} Мбайт", mbByteRecive*0.125, 2);
 
-            lbSentAll.Text = string.Format("{0} Мбит", mbByteSent, 2);
+            lbSentAll.Text = string.Format("{0} Мбайт", mbByteSent*0.125, 2);
         }
 
 
