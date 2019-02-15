@@ -19,7 +19,7 @@ namespace TextAndVoice
         public MainForm()
         {
             InitializeComponent();
-            Current = this;
+            Current = this; 
             speecher = new EnSpeecher();
         }
 
