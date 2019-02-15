@@ -74,14 +74,13 @@ namespace NetworkMonitor
 
         private void frmTest_MouseWheel(object sender, MouseEventArgs e)
         {
-            MessageBox.Show(e.Delta.ToString());
             if(e.Delta > 0)
             {
                 if (this.Opacity < 1) this.Opacity += 0.1;
             }
             else
             {
-                if (this.Opacity > 0.1) this.Opacity -= 0.1;
+                if (this.Opacity > 0.2) this.Opacity -= 0.1;
             }
         }
         //---------------------------
@@ -172,9 +171,9 @@ namespace NetworkMonitor
                 c.MouseDown += frmTest_MouseDown;
                 c.MouseUp += frmTest_MouseUp;
                 c.MouseMove += frmTest_MouseMove;
-                c.MouseWheel += frmTest_MouseWheel;
             }
 
+            this.MouseWheel += frmTest_MouseWheel;
             //Отключение скроллинга выпадающего списка сетевых интерфейсов
             this.cmbInterfaces.MouseWheel += (object sender, MouseEventArgs e) =>
             {
