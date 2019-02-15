@@ -9,13 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
 using System.Threading;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace NetworkMonitor
 {
     public partial class MainForm : Form
     {
         public static readonly int timeUpdate = 1000;
-       
+        private long lastReciveTraffic = 0;
+        private long lastSentTraffic = 0;
         
         private Initializer init;
         public MainForm()
@@ -24,8 +27,6 @@ namespace NetworkMonitor
             init = new Initializer();
             InitializeEvents();
             init.InitializeNetworkInterfaces();
-            init.InitializeReciveMonitorAllInterfaces();
-            init.InitializeSentMonitorAllInterfaces();
             InitializeTimer();
             SetComboBoxInterfacesData();
         }
@@ -70,6 +71,19 @@ namespace NetworkMonitor
                 isMouseDown = false;
             }
         }
+
+        private void frmTest_MouseWheel(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show(e.Delta.ToString());
+            if(e.Delta > 0)
+            {
+                if (this.Opacity < 1) this.Opacity += 0.1;
+            }
+            else
+            {
+                if (this.Opacity > 0.1) this.Opacity -= 0.1;
+            }
+        }
         //---------------------------
 
 
@@ -99,19 +113,21 @@ namespace NetworkMonitor
             NetworkInterface nic = init.nicArr[cmbInterfaces.SelectedIndex];
             IPInterfaceStatistics ipStat = nic.GetIPStatistics();
 
-            double mbByteSent = ((double)ipStat.BytesSent) / 1000 / 1000;
-            double mbByteRecive = ((double)ipStat.BytesReceived) / 1000 / 1000;
+            long mbByteSent = (ipStat.BytesSent) * 8 / (long)Math.Pow(10, 6);
+            long mbByteRecive = (ipStat.BytesReceived) * 8 / (long)Math.Pow(10, 6);
 
-            //ReciveTraffic[nic.Name] += (double)ipStat.BytesReceived / 1024 / 1024;
-            //SentTraffic[nic.Name] += (double)ipStat.BytesSent / 1024 / 1024;
+            
+            long mbByteSentOnSec = mbByteSent - ( lastSentTraffic != 0 ? lastSentTraffic : mbByteSent);
+            long mbByteReciveOnSec = mbByteRecive - (lastReciveTraffic != 0 ? lastReciveTraffic : mbByteRecive); ;
+            lastSentTraffic = mbByteSent;
+            lastReciveTraffic = mbByteRecive;
 
-
-            lbSpeed.Text = string.Format("{0} Мбит/сек", (nic.Speed / 1000 / 1000).ToString());
+            lbSpeed.Text = string.Format("{0} Мбит/сек", (nic.Speed / Math.Pow(10, 6)).ToString());
             lbInterfaceType.Text = nic.NetworkInterfaceType.ToString();
             lbStatus.Text = nic.OperationalStatus.ToString();
 
-            lbSentMb.Text = string.Format("{0} Мбит/сек", Math.Round(mbByteSent, 2));
-            lbReciveMb.Text = string.Format("{0} Мбит/сек", Math.Round(mbByteRecive, 2));
+            lbSentMb.Text = string.Format("{0} Мбит/сек", mbByteSentOnSec);
+            lbReciveMb.Text = string.Format("{0} Мбит/сек", mbByteReciveOnSec);
 
             lbHasMulticast.Text = nic.SupportsMulticast ? "Поддерживает" : "Не поддерживает";
 
@@ -135,9 +151,9 @@ namespace NetworkMonitor
 
             lbUnicastPacketsSent.Text = ipStat.UnicastPacketsSent.ToString();
 
-            lbReciveAll.Text = string.Format("{0} Мбайт", Math.Round(init.ReciveTraffic[nic.Name], 2));
+            lbReciveAll.Text = string.Format("{0} Мбит", mbByteRecive, 2);
 
-            lbSentAll.Text = string.Format("{0} Мбайт", Math.Round(init.SentTraffic[nic.Name], 2));
+            lbSentAll.Text = string.Format("{0} Мбит", mbByteSent, 2);
         }
 
 
@@ -156,12 +172,26 @@ namespace NetworkMonitor
                 c.MouseDown += frmTest_MouseDown;
                 c.MouseUp += frmTest_MouseUp;
                 c.MouseMove += frmTest_MouseMove;
+                c.MouseWheel += frmTest_MouseWheel;
             }
+
+            //Отключение скроллинга выпадающего списка сетевых интерфейсов
+            this.cmbInterfaces.MouseWheel += (object sender, MouseEventArgs e) =>
+            {
+                ((HandledMouseEventArgs)e).Handled = true;
+                this.OnMouseWheel(e);
+            };
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void cmbInterfaces_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lastReciveTraffic = 0;
+            lastSentTraffic = 0;
         }
     }
 }

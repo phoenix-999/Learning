@@ -97,6 +97,7 @@ namespace NetworkMonitor
             this.cmbInterfaces.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmbInterfaces.Size = new System.Drawing.Size(729, 21);
             this.cmbInterfaces.TabIndex = 0;
+            this.cmbInterfaces.SelectedIndexChanged += new System.EventHandler(this.cmbInterfaces_SelectedIndexChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -188,7 +189,7 @@ namespace NetworkMonitor
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(381, 20);
             this.label17.TabIndex = 34;
-            this.label17.Text = "Всего переданоб МегаБайт";
+            this.label17.Text = "Всего передано";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbReciveAll
@@ -214,7 +215,7 @@ namespace NetworkMonitor
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(381, 20);
             this.label16.TabIndex = 32;
-            this.label16.Text = "Всего получено, МегаБайт";
+            this.label16.Text = "Всего получено";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbUnicastPacketsSent
