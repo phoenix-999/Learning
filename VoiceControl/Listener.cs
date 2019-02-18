@@ -27,7 +27,6 @@ namespace VoiceControl
 
             InitializingHandlers();
 
-
         }
 
         private void InitializingHandlers()
