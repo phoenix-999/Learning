@@ -44,6 +44,8 @@ namespace VoiceControl
             });
             th.IsBackground = true;
             th.Start();
+            Action command = (from c in Commands.commands where c.Key == e.Result.Text select c.Value).First<Action>();
+            command();
         }
     }
 }
