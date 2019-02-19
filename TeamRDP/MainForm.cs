@@ -29,6 +29,7 @@ namespace TeamRDP
                 rdp.UserName = tbUserName.Text;
                 IMsTscNonScriptable security = (IMsTscNonScriptable)rdp.GetOcx();
                 security.ClearTextPassword = tbPassword.Text;
+                
                 rdp.Connect();
             }
             catch(Exception ex)
