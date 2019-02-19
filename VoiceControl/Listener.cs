@@ -19,8 +19,8 @@ namespace VoiceControl
 
         public Listener()
         {
-            _speechRecognitionEngine = new SpeechRecognitionEngine();
-            _speechRecognitionEngine.SetInputToDefaultAudioDevice();
+            _speechRecognitionEngine = new System.Speech.Recognition.SpeechRecognitionEngine(new CultureInfo("en-EN"));
+            _speechRecognitionEngine.SetInputToDefaultAudioDevice();//Необходим подключенный микрофон или использовать методы других audio исходников
             _dictationGrammar = new DictationGrammar();
             _speechRecognitionEngine.LoadGrammar(_dictationGrammar);
             _speechRecognitionEngine.RecognizeAsync(System.Speech.Recognition.RecognizeMode.Multiple);
