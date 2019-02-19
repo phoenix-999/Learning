@@ -189,7 +189,7 @@
             this.ClientSize = new System.Drawing.Size(877, 557);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainForm";
-            this.Text = "Team RDP";
+            this.Text = "My RDP";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
