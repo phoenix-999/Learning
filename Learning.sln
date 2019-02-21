@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextAndVoice", "TextAndVoic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceControl", "VoiceControl\VoiceControl.csproj", "{35C8710C-9569-43C8-91AF-F8B54C324D18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRDP", "TeamRDP\MyRDP.csproj", "{0B36BEEF-94E3-4575-A848-D3835AEDCFD0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remote Assistant", "Remote Assistant\Remote Assistant.csproj", "{AAA1D9FD-6656-4E2B-8EB2-923F7B5B0B71}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{35C8710C-9569-43C8-91AF-F8B54C324D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35C8710C-9569-43C8-91AF-F8B54C324D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35C8710C-9569-43C8-91AF-F8B54C324D18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B36BEEF-94E3-4575-A848-D3835AEDCFD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B36BEEF-94E3-4575-A848-D3835AEDCFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B36BEEF-94E3-4575-A848-D3835AEDCFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B36BEEF-94E3-4575-A848-D3835AEDCFD0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AAA1D9FD-6656-4E2B-8EB2-923F7B5B0B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AAA1D9FD-6656-4E2B-8EB2-923F7B5B0B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAA1D9FD-6656-4E2B-8EB2-923F7B5B0B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
