@@ -22,7 +22,7 @@ namespace ThreadingTest
                 th[i].Start(ap);
             }
             
-            //are.WaitOne();
+            are.WaitOne();
             Console.WriteLine("Finish");
         }
 
