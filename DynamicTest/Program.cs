@@ -12,8 +12,10 @@ namespace DynamicTest
         
         static void Main(string[] args)
         {
+            //dynamic m = () => { }; // Ошибка! dynamic не работает с делегатами.
+
             //foreach(var i in Generate()) //Ошибка! Тип i будет object, так как IEnumerable вернет колекцию object на этапе компиляции
-            foreach(dynamic i in Generate()) //Тип будет опознан средой DLR и произойдет DownCast от object к нужному типу на этапе выполнения
+            foreach (dynamic i in Generate()) //Тип будет опознан средой DLR и произойдет DownCast от object к нужному типу на этапе выполнения
             {
                 Console.WriteLine("Type: {0}, Name: {1}, Age: {2}", i.GetType(), i.Name, i.Age);
             }
