@@ -79,6 +79,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestedClassesTest", "Nested
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyambdaExpressionTest", "LyambdaExpressionTest\LyambdaExpressionTest.csproj", "{EB647671-B9FE-4A3B-A975-A05D3D16B4DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PreprocessorDirectives", "PreprocessorDirectives\PreprocessorDirectives.csproj", "{C54EAABF-F14A-4851-947F-4E538270926B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -229,6 +231,10 @@ Global
 		{EB647671-B9FE-4A3B-A975-A05D3D16B4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB647671-B9FE-4A3B-A975-A05D3D16B4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB647671-B9FE-4A3B-A975-A05D3D16B4DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C54EAABF-F14A-4851-947F-4E538270926B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54EAABF-F14A-4851-947F-4E538270926B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C54EAABF-F14A-4851-947F-4E538270926B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C54EAABF-F14A-4851-947F-4E538270926B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
