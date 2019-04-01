@@ -62,7 +62,7 @@ namespace CollectionsTest
         }
         public override string ToString()
         {
-            return string.Format("Class: {0}, MonthName: {1}, MonthNumber: {2}", this.GetType(), this.MonthName, this.MonthNumber);
+            return string.Format("MonthName: {1}, MonthNumber: {2}", this.GetType(), this.MonthName, this.MonthNumber);
         }
     }
 

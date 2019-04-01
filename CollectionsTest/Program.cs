@@ -14,10 +14,15 @@ namespace CollectionsTest
             mc.InitializeCollection();
             Month m = new Month(Monthes.January);
             mc.Add(m);
-            //mc.Remove(m);
             foreach (Month i in mc["January"])
             {
-                Console.WriteLine(i);
+                Console.WriteLine("Count: {0}, data: {1}", mc.Count, i);
+            }
+            Console.WriteLine(new string('-', 32));
+            mc.Remove(m);
+            foreach (Month i in mc["January"])
+            {
+                Console.WriteLine("Count: {0}, data: {1}", mc.Count, i);
             }
         }
     }
