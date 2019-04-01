@@ -14,11 +14,11 @@ namespace PreprocessorDirectives
             Console.WriteLine("region");
             #endregion
 
-#if DEBUG
+#if DEBUG //проверка условия препроцессором
             Console.WriteLine("DEBUG");
 #endif
 
-#line hidden
+#line hidden //Скрыто от отладчика
             Console.WriteLine("Скрыто от отладчика");
 #line default
 
