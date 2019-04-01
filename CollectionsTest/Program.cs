@@ -16,7 +16,13 @@ namespace CollectionsTest
             Console.WriteLine("\nQueue{0}", new string('-', 32));
             QueueTest();
             Console.WriteLine("\nHashtable{0}", new string('-', 32));
+            //Hashtable хранит элементы в неотсортированном порядке. SortedList - Hashtable с учетом сортировки, можно передавать реализацию IComparer
+            //Hashtable стоит использоавать при большом кол-ве элементов.
+            //Для небольшого кол-ва элемнтов (до 10) лучше использовать ListDictionary или гибридный вариант HybridDictionary - если кол-во элементов заранее неизвестно
+            //OrderedDictionary - Hashtable, элементы которого хранятся в порядке их добавления.
             IEqualityCompareTest();
+            Console.WriteLine("\nBitArray{0}", new string('-', 32));
+            BitArrayTest();
         }
 
         static void QueueTest()
@@ -63,14 +69,51 @@ namespace CollectionsTest
                 Console.WriteLine("Count: {0}, data: {1}", mc.Count, i);
             }
         }
+      
+        #region Hashtable
         static void IEqualityCompareTest()
         {
+            ///<summary>
+            ///Ключ Hashtable не может быть продублирован, возникает исключение времени выполнения System.ArgumentException
+            ///Hashtable сначала вызывает метод GetHashCode обьктов ключа. Если хешкод разный - обьекты разные. 
+            ///Если хешкод идентичен - вызывается метод Equals для подтверждения  разности обьектов.
+            ///Для хранение значений в словаре с одинаковыми ключами использовать NameValueCollection
+            ///</summary>
             Hashtable hash = new Hashtable(new EqualityComparer());
             hash.Add(new A(), "A");
             //hash.Add(new B(), "B"); //Исключение см. реализацию класса EqualityComparer
 
             Console.WriteLine("hash.Count == {0}", hash.Count);
         }
+        #endregion
+        
+        #region BitArray
+        static void BitArrayTest()
+        {
+            BitArray bits = new BitArray(3);
+            bits[0] = true;
+            bits[1] = true;
+            bits[2] = false;
+
+            bits.Length = 4; //Размер коллекции увеличивается через getter свойства Length
+            bits[3] = false;
+
+            BitArray bits2 = new BitArray(4);
+            bits2[0] = true;
+            bits2[1] = false;
+            bits2[2] = false;
+            bits2[3] = true;
+            //BitArray поддерживает логические битовые операции. Размеры коллекций должны быть одинаковы, иначе - System.ArgumentException
+
+            BitArray bitsResult = bits.Xor(bits2);
+            foreach (bool bit in bitsResult)
+                Console.WriteLine("XOR: {0}", bit);
+
+            //Для работы с битами Int32 использовать BitVector32. Можно создавать несколько секций (static BitVector32.Section BitVector32.CreateSection()) для хранения нескольких чисел в 32 битах.
+        }
+        #endregion
+
+
     }
     #region Для IEqualityCompareTest()
     class A
@@ -143,6 +186,8 @@ namespace CollectionsTest
         }
     }
     #endregion
+
+    
 
 
 
