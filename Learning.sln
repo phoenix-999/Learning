@@ -83,6 +83,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PreprocessorDirectives", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionsTest", "CollectionsTest\CollectionsTest.csproj", "{DB3C00B4-AA20-484A-AB58-4EE2BBD551DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOTest", "IOTest\IOTest.csproj", "{F05B5D90-B77E-4A35-857A-A52962CAE102}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -241,6 +243,10 @@ Global
 		{DB3C00B4-AA20-484A-AB58-4EE2BBD551DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB3C00B4-AA20-484A-AB58-4EE2BBD551DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB3C00B4-AA20-484A-AB58-4EE2BBD551DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F05B5D90-B77E-4A35-857A-A52962CAE102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F05B5D90-B77E-4A35-857A-A52962CAE102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F05B5D90-B77E-4A35-857A-A52962CAE102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F05B5D90-B77E-4A35-857A-A52962CAE102}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
