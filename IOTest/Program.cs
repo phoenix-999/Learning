@@ -59,10 +59,10 @@ namespace IOTest
         {
             Console.WriteLine("Drives {0}", new string('-', 20));
 
-            string[] drives = Directory.GetLogicalDrives();
+            DriveInfo[] drives = DriveInfo.GetDrives();
             foreach(var drive in drives)
             {
-                Console.WriteLine();
+                Console.WriteLine(drive.Name);
             }
         }
 
