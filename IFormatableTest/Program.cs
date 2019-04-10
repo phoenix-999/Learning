@@ -11,6 +11,9 @@ namespace IFormattableTest
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Culture: {0}", CultureInfo.CurrentCulture.NativeName);
+            Console.WriteLine("Region: {0}", RegionInfo.CurrentRegion.NativeName);
+
             Temparature t = new Temparature(12m);
             string s = string.Format("{0}", t);
             Console.WriteLine(s);
@@ -27,6 +30,14 @@ namespace IFormattableTest
 
             s = t.ToString("kelvin", CultureInfo.CreateSpecificCulture("en-US"));
             Console.WriteLine(s);
+
+            Console.WriteLine("Все культуры определлные в системе:");
+            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+            foreach(var culture in cultures)
+            {
+                Console.WriteLine("{0} : {1} - {2}", culture, culture.DisplayName, culture.NativeName);//Для корректного NativeName должны быть установлены языковые пакеты в ОС
+            }
+            
         }
     }
 }
