@@ -31,7 +31,7 @@ namespace IFormattableTest
             s = t.ToString("kelvin", CultureInfo.CreateSpecificCulture("en-US"));
             Console.WriteLine(s);
 
-            Console.WriteLine("Все культуры определлные в системе:");
+            Console.WriteLine("Все культуры определенные в системе:");
             CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
             foreach(var culture in cultures)
             {
