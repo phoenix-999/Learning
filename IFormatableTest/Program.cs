@@ -28,7 +28,7 @@ namespace IFormattableTest
             Console.WriteLine(s);
 
 
-            s = t.ToString("kelvin", new CultureInfo("en-US"));
+            s = t.ToString("kelvin", new CultureInfo("en-GB"));
             Console.WriteLine(s);
 
             Console.WriteLine("Все культуры определенные в системе:");
