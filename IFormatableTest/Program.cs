@@ -28,14 +28,14 @@ namespace IFormattableTest
             Console.WriteLine(s);
 
 
-            s = t.ToString("kelvin", CultureInfo.CreateSpecificCulture("en-US"));
+            s = t.ToString("kelvin", new CultureInfo("en-US"));
             Console.WriteLine(s);
 
             Console.WriteLine("Все культуры определенные в системе:");
             CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
             foreach(var culture in cultures)
             {
-                Console.WriteLine("{0} : {1} - {2}", culture, culture.DisplayName, culture.NativeName);//Для корректного NativeName должны быть установлены языковые пакеты в ОС
+                //Console.WriteLine("{0} : {1} - {2}", culture, culture.DisplayName, culture.NativeName);//Для корректного NativeName должны быть установлены языковые пакеты в ОС
             }
             
         }
