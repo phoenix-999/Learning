@@ -11,7 +11,7 @@ namespace XMLTest
 {
     class Program
     {
-        static readonly string DOCUMENT_NAME = "test.xml";
+        static readonly string DOCUMENT_NAME = "te5st.xml";
         static XmlDocument xmlDocument;
         static void Main(string[] args)
         {
@@ -46,12 +46,18 @@ namespace XMLTest
             }
             catch(Exception)
             {
-                using (FileStream fs = new FileStream(DOCUMENT_NAME, FileMode.Create, FileAccess.ReadWrite, FileShare.Read))
+                using (FileStream fs = new FileStream(DOCUMENT_NAME, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read))
                 {
-                    XmlTextWriter writer = new XmlTextWriter(fs, Encoding.UTF8);
+                    XmlTextWriter writer = new XmlTextWriter(fs, Encoding.Unicode);
                     writer.WriteStartDocument();
-                    writer.WriteWhitespace(Environment.NewLine);
+                    writer.Formatting = Formatting.Indented; //писать с переводом строки
+                    writer.IndentChar = ' '; //писать с отступами
+                    writer.Indentation = 4;
+                    //writer.WriteWhitespace(Environment.NewLine);
                     writer.WriteStartElement("library");
+                    writer.WriteStartElement("book");
+                    writer.WriteValue("1");
+                    writer.WriteEndElement();
                     writer.WriteEndElement();
                     writer.Close();
                 }
@@ -72,8 +78,15 @@ namespace XMLTest
             string pattern = @" ";
             isbn = Regex.Replace(isbn, pattern, "");
 
-            foreach (XmlElement xmlElement in doc.DocumentElement.ChildNodes)
+            foreach (var node in doc.DocumentElement.ChildNodes)
             {
+                XmlElement xmlElement;
+
+                if (node is XmlElement) //В случае наличия текста между тегами вернется XmlText
+                    xmlElement = node as XmlElement;
+                else
+                    continue;
+
                 string attrValue = xmlElement.GetAttribute("ISBN");
                 if (attrValue == isbn)
                 {
