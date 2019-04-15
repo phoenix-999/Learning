@@ -116,28 +116,51 @@ namespace XMLTest
             book.OwnerDocument.Save(DOCUMENT_NAME);
         }
 
+        //static void AddBook(XmlDocument doc, string genre, string isbn, DateTime publicationdate, string title, double price)
+        //{
+        //    XPathNavigator navigator = doc.CreateNavigator();
+
+        //    string ns = doc.DocumentElement.NamespaceURI;
+        //    navigator.MoveToFollowing("book", ns);
+
+        //    using (XmlWriter writer = navigator.InsertBefore())
+        //    { 
+        //        writer.WriteStartElement("book");
+        //        writer.WriteAttributeString("genre", genre);
+        //        writer.WriteAttributeString("ISBN", isbn);
+        //        writer.WriteAttributeString("publicationdate", publicationdate.ToShortDateString());
+        //            writer.WriteStartElement("title");
+        //            writer.WriteValue(title);
+        //            writer.WriteEndElement();
+        //            writer.WriteStartElement("price");
+        //            writer.WriteValue(price.ToString());
+        //            writer.WriteEndElement();
+        //        writer.WriteEndElement();
+
+        //    }
+
+        //    doc.Save(DOCUMENT_NAME);
+        //}
+
+
+        //Более простой способ добавления элемента
         static void AddBook(XmlDocument doc, string genre, string isbn, DateTime publicationdate, string title, double price)
         {
-            XPathNavigator navigator = doc.CreateNavigator();
-            
-            string ns = doc.DocumentElement.NamespaceURI;
-            navigator.MoveToFollowing("book", ns);
+            XmlElement book = doc.CreateElement("book");
 
-            using (XmlWriter writer = navigator.InsertBefore())
-            { 
-                writer.WriteStartElement("book");
-                writer.WriteAttributeString("genre", genre);
-                writer.WriteAttributeString("ISBN", isbn);
-                writer.WriteAttributeString("publicationdate", publicationdate.ToShortDateString());
-                    writer.WriteStartElement("title");
-                    writer.WriteValue(title);
-                    writer.WriteEndElement();
-                    writer.WriteStartElement("price");
-                    writer.WriteValue(price.ToString());
-                    writer.WriteEndElement();
-                writer.WriteEndElement();
-                
-            }
+            book.SetAttribute("genre", genre);
+            book.SetAttribute("ISBN", isbn);
+            book.SetAttribute("publicationdate", publicationdate.ToShortDateString());
+
+            XmlElement bookTitle = doc.CreateElement("title");
+            bookTitle.InnerText = title;
+            book.AppendChild(bookTitle);
+
+            XmlElement bookPrice = doc.CreateElement("price");
+            bookPrice.InnerText = price.ToString();
+            book.AppendChild(bookPrice);
+
+            doc.DocumentElement.AppendChild(book);
 
             doc.Save(DOCUMENT_NAME);
         }
