@@ -11,7 +11,7 @@ namespace XMLTest
 {
     class Program
     {
-        static readonly string DOCUMENT_NAME = "te4st.xml";
+        static readonly string DOCUMENT_NAME = "test.xml";
         static XmlDocument xmlDocument;
         static void Main(string[] args)
         {
