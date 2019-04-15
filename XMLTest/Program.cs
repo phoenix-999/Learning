@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.XPath;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -11,7 +12,7 @@ namespace XMLTest
 {
     class Program
     {
-        static readonly string DOCUMENT_NAME = "te5st.xml";
+        static readonly string DOCUMENT_NAME = "test.xml";
         static XmlDocument xmlDocument;
         static void Main(string[] args)
         {
@@ -32,9 +33,16 @@ namespace XMLTest
                 Console.WriteLine("Book {0} not found", "1 - 861002 - 30 - 1");
             }
 
-            
 
-            Console.WriteLine(xmlDocument.InnerXml);
+            AddBook(xmlDocument, "novel", "1-861001-45-5", DateTime.Now, "Test", 50.00);
+
+
+            foreach (string book in SelectBooks(xmlDocument, DateTime.Now))
+            {
+                Console.WriteLine(book);
+            }
+
+            Console.WriteLine("\n\n {0}", xmlDocument.InnerXml);
         }
 
         static void InitXmlDocument()
@@ -44,7 +52,7 @@ namespace XMLTest
             {
                 xmlDocument.Load(DOCUMENT_NAME);
             }
-            catch(Exception)
+            catch(FileNotFoundException)
             {
                 using (FileStream fs = new FileStream(DOCUMENT_NAME, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read))
                 {
@@ -107,5 +115,69 @@ namespace XMLTest
 
             book.OwnerDocument.Save(DOCUMENT_NAME);
         }
+
+        static void AddBook(XmlDocument doc, string genre, string isbn, DateTime publicationdate, string title, double price)
+        {
+            XPathNavigator navigator = doc.CreateNavigator();
+            
+            string ns = doc.DocumentElement.NamespaceURI;
+            navigator.MoveToFollowing("book", ns);
+
+            using (XmlWriter writer = navigator.InsertBefore())
+            { 
+                writer.WriteStartElement("book");
+                writer.WriteAttributeString("genre", genre);
+                writer.WriteAttributeString("ISBN", isbn);
+                writer.WriteAttributeString("publicationdate", publicationdate.ToShortDateString());
+                    writer.WriteStartElement("title");
+                    writer.WriteValue(title);
+                    writer.WriteEndElement();
+                    writer.WriteStartElement("price");
+                    writer.WriteValue(price.ToString());
+                    writer.WriteEndElement();
+                writer.WriteEndElement();
+                
+            }
+
+            doc.Save(DOCUMENT_NAME);
+        }
+
+        static IEnumerable<string> SelectBooks(XmlDocument doc, DateTime publicationdate)
+        {
+            List<string> result = new List<string>();
+
+            foreach (XmlNode node in doc.GetElementsByTagName("book"))
+            {
+                if (node.Attributes["publicationdate"].Value == publicationdate.ToShortDateString())
+                {
+                    result.Add(node.FirstChild.InnerText);
+                }
+            }
+
+
+            
+            // Не работает Select. Вариант реализации выше - компактней и работает
+            //XPathNavigator navigator = doc.CreateNavigator();
+
+            //С какого-то хера не возвращает ничего
+            //XPathNodeIterator iterator = navigator.Select("books/book");
+
+            //while(iterator.MoveNext())
+            //{
+            //    XPathNavigator bookNavigator = iterator.Current;
+
+            //    bookNavigator.MoveToAttribute("publicationdate", "");
+
+            //    if (bookNavigator.Value == publicationdate.ToShortDateString())
+            //    {
+            //        bookNavigator.MoveToChild("title", "");
+            //        result.Add(bookNavigator.Value);
+            //    }
+            //}
+
+
+            return result;
+        }
+
     }
 }
