@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IFormatProviderTest", "IFor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegulareExpressions", "RegulareExpressions\RegulareExpressions.csproj", "{19F28A2F-5BBF-49DE-92C1-440245A6458B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLTest", "XMLTest\XMLTest.csproj", "{AD778764-59A0-4CD1-828A-DA10DC24063D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -265,6 +267,10 @@ Global
 		{19F28A2F-5BBF-49DE-92C1-440245A6458B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F28A2F-5BBF-49DE-92C1-440245A6458B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19F28A2F-5BBF-49DE-92C1-440245A6458B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD778764-59A0-4CD1-828A-DA10DC24063D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD778764-59A0-4CD1-828A-DA10DC24063D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD778764-59A0-4CD1-828A-DA10DC24063D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD778764-59A0-4CD1-828A-DA10DC24063D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
