@@ -29,7 +29,7 @@ namespace AppSettingsTest
         {
             if (visualEvents != null)
             {
-                visualEvents.SetBackgroundColor();
+                visualEvents.SetSavedSettings();
             }
             else
             {

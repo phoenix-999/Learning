@@ -24,9 +24,9 @@ namespace AppSettingsTest
         event ChangeColor ChangeBackgroundColorEvent;
 
         
-        delegate void SetColorFromAppSettings();
-        //Для установки цвета фона при загрузке
-        event SetColorFromAppSettings SetStartBackgroundColorEvent;
+        delegate void SetFromAppSettings();
+        //Для установки настроек при загрузке
+        event SetFromAppSettings SetFromAppSettingsEvent;
 
         public VisualEvents(Form form)
         {
@@ -39,7 +39,7 @@ namespace AppSettingsTest
             ///Инициализирует события обработчиками
             /// </summary>
             this.ChangeBackgroundColorEvent += ChangeBackgroundColorHandler;
-            this.SetStartBackgroundColorEvent += SetStartBackgroundColorHandler;
+            this.SetFromAppSettingsEvent += SetStartBackgroundColorHandler;
         }
 
         void ChangeBackgroundColorHandler(Color color)
@@ -77,9 +77,9 @@ namespace AppSettingsTest
 
         }
 
-        public void SetBackgroundColor()
+        public void SetSavedSettings()
         {
-            SetStartBackgroundColorEvent();
+            SetFromAppSettingsEvent();
         }
 
         void ParseRGB(string rgb, out int r, out int g, out int b)
