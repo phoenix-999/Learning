@@ -97,6 +97,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSettingsTest", "AppSetti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionTest", "ReflectionTest\ReflectionTest.csproj", "{B0BAEC7D-B122-4C09-92AA-53D4E35E58CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributeTest", "AttributeTest\AttributeTest.csproj", "{ACE77D05-EDDD-471E-B76F-A77A487017EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -283,6 +285,10 @@ Global
 		{B0BAEC7D-B122-4C09-92AA-53D4E35E58CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0BAEC7D-B122-4C09-92AA-53D4E35E58CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0BAEC7D-B122-4C09-92AA-53D4E35E58CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACE77D05-EDDD-471E-B76F-A77A487017EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE77D05-EDDD-471E-B76F-A77A487017EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE77D05-EDDD-471E-B76F-A77A487017EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE77D05-EDDD-471E-B76F-A77A487017EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
