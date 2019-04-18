@@ -99,6 +99,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionTest", "Reflectio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributeTest", "AttributeTest\AttributeTest.csproj", "{ACE77D05-EDDD-471E-B76F-A77A487017EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationTEst", "SerializationTEst\SerializationTEst.csproj", "{9BEE0EE0-6BF7-4EEE-9AD9-3726324D9D53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -289,6 +291,10 @@ Global
 		{ACE77D05-EDDD-471E-B76F-A77A487017EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACE77D05-EDDD-471E-B76F-A77A487017EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACE77D05-EDDD-471E-B76F-A77A487017EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BEE0EE0-6BF7-4EEE-9AD9-3726324D9D53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BEE0EE0-6BF7-4EEE-9AD9-3726324D9D53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BEE0EE0-6BF7-4EEE-9AD9-3726324D9D53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BEE0EE0-6BF7-4EEE-9AD9-3726324D9D53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
