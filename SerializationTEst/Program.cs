@@ -4,7 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.Security;
 using System.IO;
+
 
 namespace SerializationTEst
 {
@@ -13,10 +17,12 @@ namespace SerializationTEst
         static void Main(string[] args)
         {
             XmlSerialize();
+            CustomSerialization();
         }
 
         static void XmlSerialize()
         {
+            //DataSet суриализуется в XML способом вызова метода экземпляра DataSet.WriteXml()
             Console.WriteLine("XML Serialize");
 
             MainClass mainClass = new MainClass(1);
@@ -45,6 +51,59 @@ namespace SerializationTEst
                 Console.WriteLine("MainClass.TestStr = {0}", deserializeClass.TestStr);
                 Console.WriteLine("MainClass.ClassForAggregation.Id= {0}", deserializeClass.ClassForAggregation.Id);
             }
+        }
+
+        static void CustomSerialization()
+        {
+            MainClassCustom mainClassCustom = new MainClassCustom();
+            mainClassCustom.TestStr = "Custom string";
+
+            using (FileStream stream = new FileStream("CustomSerialization.dat", FileMode.OpenOrCreate, FileAccess.Write))
+            {
+                //Сериализация
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    //Метод Serialize проверит реализует ли указанный тип экземпляра интерфейс ISerialization
+                    //Если истина - создаст экземпляр SerializationInfo и передаст его в метод ISerializable.GetObjectData для напонения данными
+                    //SerializationInfo чем то напоминает словарь
+                    //Сериализованы будут заголовки класса и добавленные в SerializationInfo данные
+                    formatter.Serialize(stream, mainClassCustom);
+                    Console.WriteLine("Сериализовано!");
+                }
+                catch(SerializationException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch(SecurityException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            //Десериализация
+            MainClassCustom newMainClassCustom;
+            using (FileStream stream = File.OpenRead("CustomSerialization.dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                //Будет вызван специальный конструктор
+                try
+                {
+                    newMainClassCustom = formatter.Deserialize(stream) as MainClassCustom;
+                    Console.WriteLine("Десериализовано!");
+                    Console.WriteLine(newMainClassCustom.TestStr);
+                }
+                catch (SerializationException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (SecurityException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
         }
     }
 }
