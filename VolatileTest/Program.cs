@@ -62,6 +62,7 @@ namespace VolatileTest
 
         static void Worker()
         {
+            Console.WriteLine("Method Worker Thread ID {0}, IsBackground {1}", Thread.CurrentThread.ManagedThreadId, Thread.CurrentThread.IsBackground);
             int i = 0;
             while(count == 0)
             {
