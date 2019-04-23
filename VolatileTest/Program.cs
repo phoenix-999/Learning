@@ -51,6 +51,7 @@ namespace VolatileTest
             count = 1;
             Console.WriteLine("Main: ожидание завершения вторичного потока");
             thread.Join();
+            Console.WriteLine("Main завершился");
         }
 
         async static void Run()
@@ -62,6 +63,7 @@ namespace VolatileTest
 
         static void Worker()
         {
+            //Thread.CurrentThread.IsBackground = false;
             Console.WriteLine("Method Worker Thread ID {0}, IsBackground {1}", Thread.CurrentThread.ManagedThreadId, Thread.CurrentThread.IsBackground);
             int i = 0;
             while(count == 0)
@@ -77,7 +79,7 @@ namespace VolatileTest
             //  goto Label;
             //}
             //Если же переменная участующая в условии ветвления или цикла помечена как volatile - JIT опитимизация для используещего ее кода не производится
-            Console.WriteLine("Поток {0} завершился. Значение инкрементиркемой переменной = {1}", Thread.CurrentThread.ManagedThreadId, i);
+            Console.WriteLine("Поток {0} завершился. Значение инкрементируемой переменной = {1}", Thread.CurrentThread.ManagedThreadId, i);
         }
     }
 }
