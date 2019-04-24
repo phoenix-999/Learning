@@ -20,13 +20,17 @@ namespace TasksTest
             cancelation = new CancellationTokenSource();
             token = cancelation.Token;
 
-            Task<long> task = new Task<long>(Method, token);
+            Task<long> task = new Task<long>(Method, token, TaskCreationOptions.LongRunning);
+            //Выполнения в случае необработанного исключения - НЕ СРАБОТАЛ
+            task.ContinueWith((t) => { Console.WriteLine("Continue with OnlyOnCanceled, result =  {0}, Status = {1}", t.Result, t.Status); }, TaskContinuationOptions.OnlyOnCanceled);
+            //Выполнение в случае отсутсвия необработанного исключени (отмена не произошла)
             Task secondTask = task.ContinueWith((t) => { Console.WriteLine("Continue with, result =  {0}, Status = {1}", t.Result, t.Status); });
             task.Start();
 
             Thread.Sleep(1000);
 
-            Task.Factory.StartNew(CancelTask, new CancelationArguments(task, cancelation), token);
+            cancelation.Cancel(); //Отмена выполнения задачи. Исключения не появляется. Оно будет выброшено в случае вызова Task.Wait()
+            //Task.Factory.StartNew(CancelTask, new CancelationArguments(task, cancelation), token); //отмена задачи с использваонием задачи обработки
 
             Thread.Sleep(2000);
         }
@@ -38,11 +42,9 @@ namespace TasksTest
 
             foreach (int i in Enumerable.Range(0, 100000))
             {
-                try
-                {
-                    token.ThrowIfCancellationRequested();
-                }
-                catch (OperationCanceledException ex) { return result; }
+                Thread.Sleep(100);
+                Console.Write("+");
+                token.ThrowIfCancellationRequested();
 
                 Thread.Sleep(10);
                 result += i;
@@ -59,8 +61,9 @@ namespace TasksTest
             {
                 cancelationArguments = (CancelationArguments)arguments;
                 cancelationArguments.Cancelation.Cancel();
-                cancelationArguments.Task.Wait();
-                Console.WriteLine("Задача {0} отменена, статус = {1}", cancelationArguments.Task.Id, cancelationArguments.Task.Status);
+                cancelationArguments.Task.Wait(); //Если закоментировать - исключение ThrowIfCancellationRequested распостранятся не будет. Task.Status = Running 
+                Thread.Sleep(1000);//Статус задачи менятеся - Task.Status = Canceled
+                
             }
             catch (InvalidCastException ex)
             {
@@ -69,7 +72,15 @@ namespace TasksTest
             catch (AggregateException ex)
             {
                 Console.WriteLine("Отмена задачи с Id = {0}, статус задачи = {1}", cancelationArguments.Task.Id, cancelationArguments.Task.Status);
+                Console.WriteLine("Вывод всех исключений на экран:");
+                //Вывод всех исключений на экран
+                
+                foreach (var e in ex.Flatten().InnerExceptions)//Flatten - сборка все InnerExceptions  у всех AggregateException в один AggregateException
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
+            Console.WriteLine("Задача {0} отменена, статус = {1}", cancelationArguments.Task.Id, cancelationArguments.Task.Status);
         }
 
     }
