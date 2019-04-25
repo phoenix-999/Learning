@@ -113,6 +113,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksTest", "TasksTest\Task
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAwaitTEst", "AsyncAwaitTEst\AsyncAwaitTEst.csproj", "{4234F46D-7028-4F0B-85EC-CB65F200F0F4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EF", "EF", "{110C65B4-A290-4456-93C9-67DE36D8A410}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstTutorial", "CodeFirstTutorial\CodeFirstTutorial.csproj", "{1970C0E1-1B53-4573-9F58-FCB1F21075D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -323,6 +327,10 @@ Global
 		{4234F46D-7028-4F0B-85EC-CB65F200F0F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4234F46D-7028-4F0B-85EC-CB65F200F0F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4234F46D-7028-4F0B-85EC-CB65F200F0F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1970C0E1-1B53-4573-9F58-FCB1F21075D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1970C0E1-1B53-4573-9F58-FCB1F21075D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1970C0E1-1B53-4573-9F58-FCB1F21075D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1970C0E1-1B53-4573-9F58-FCB1F21075D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -350,6 +358,7 @@ Global
 		{329F4F62-5259-4DDB-8C29-D00108683CD1} = {0B4AFAB7-A76A-424A-BE26-24D7322B170A}
 		{ED6617B0-1E9E-4324-9B55-48CCB70BE3EA} = {329F4F62-5259-4DDB-8C29-D00108683CD1}
 		{4234F46D-7028-4F0B-85EC-CB65F200F0F4} = {329F4F62-5259-4DDB-8C29-D00108683CD1}
+		{1970C0E1-1B53-4573-9F58-FCB1F21075D0} = {110C65B4-A290-4456-93C9-67DE36D8A410}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12BF4283-6EFD-433F-9B74-835D734E5B63}
