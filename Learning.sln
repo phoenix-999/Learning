@@ -119,7 +119,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstTutorial", "CodeFi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSecondTutorial", "CodeSecondTutorial\CodeSecondTutorial.csproj", "{EB8628D1-E9A4-487D-8B36-FA58D90BF454}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelFirstTutorial", "ModelFirstTutorial\ModelFirstTutorial.csproj", "{E1A4535D-37D8-4FC4-AB14-462A0005EAA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseFirstTutorial", "DataBaseFirstTutorial\DataBaseFirstTutorial.csproj", "{E1A4535D-37D8-4FC4-AB14-462A0005EAA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
