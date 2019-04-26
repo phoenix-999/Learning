@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EF_People_ModelFirstTutorialDataSet" targetNamespace="http://tempuri.org/EF_People_ModelFirstTutorialDataSet.xsd" xmlns:mstns="http://tempuri.org/EF_People_ModelFirstTutorialDataSet.xsd" xmlns="http://tempuri.org/EF_People_ModelFirstTutorialDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="EF_People_ModelFirstTutorialConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="EF_People_ModelFirstTutorialConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ModelFirstTutorial.Properties.Settings.GlobalReference.Default.EF_People_ModelFirstTutorialConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EF_People_ModelFirstTutorialDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="EF_People_ModelFirstTutorialDataSet" msprop:Generator_UserDSName="EF_People_ModelFirstTutorialDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

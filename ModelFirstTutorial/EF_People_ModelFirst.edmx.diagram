@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1c9361badea14483bcabc836187d3296" Name="Diagram1" >
+        <EntityTypeShape EntityType="EF_People_ModelFirst.User" Width="1.5" PointX="5.875" PointY="0.75" />
+        <EntityTypeShape EntityType="EF_People_ModelFirst.Manager" Width="1.5" PointX="5.875" PointY="3.125" />
+        <InheritanceConnector EntityType="EF_People_ModelFirst.Manager" />
+        <EntityTypeShape EntityType="EF_People_ModelFirst.Departament" Width="1.5" PointX="9.125" PointY="0.75" />
+        <AssociationConnector Association="EF_People_ModelFirst.DepartamentUser" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
