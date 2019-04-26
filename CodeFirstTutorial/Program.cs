@@ -21,8 +21,17 @@ namespace CodeFirstTutorial
             //    userContext.SaveChanges();
             //}
 
+            User user3 = new Admin() { Name = "Alex", Age = 30, Level = 1 };
             using (UserContext userContext = new UserContext())
             {
+                userContext.Users.Add(user3);
+                userContext.SaveChanges();
+            }
+
+            using (UserContext userContext = new UserContext())
+            {
+
+
                 Console.WriteLine("Users:");
                 foreach(User user in userContext.Users)
                 {
