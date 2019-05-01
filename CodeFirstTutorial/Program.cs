@@ -11,15 +11,15 @@ namespace CodeFirstTutorial
     {
         static void Main(string[] args)
         {
-            //User user1 = new User() { Name = "Yurii", Age = 27 };
-            //User user2 = new User() { Name = "Liubov", Age = 38 };
-            //Sarea sarea1 = new Sarea() { SareaName = "Sarea1", User = user1 };
-            //using (UserContext userContext = new UserContext())
-            //{
-            //    userContext.Users.AddRange(new User[]{ user1, user2});
-            //    userContext.Sareas.Add(sarea1);
-            //    userContext.SaveChanges();
-            //}
+            User user1 = new User() { Name = "Yurii", Age = 27 };
+            User user2 = new User() { Name = "Liubov", Age = 38 };
+            Sarea sarea1 = new Sarea() { SareaName = "Sarea1", User = user1 };
+            using (UserContext userContext = new UserContext())
+            {
+                userContext.Users.AddRange(new User[] { user1, user2 });
+                userContext.Sareas.Add(sarea1);
+                userContext.SaveChanges();
+            }
 
             User user3 = new Admin() { Name = "Alex", Age = 30, Level = 1 };
             using (UserContext userContext = new UserContext())
