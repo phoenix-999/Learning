@@ -45,6 +45,10 @@ namespace CodeFirstTutorial
                 }
             }
 
+            #region LINQ
+
+            #endregion
+
         }
     }
 }
