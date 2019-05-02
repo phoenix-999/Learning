@@ -9,7 +9,7 @@ namespace CodeFirstTutorial.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "CodeFirstTutorial.UserContext";
         }
 

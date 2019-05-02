@@ -10,7 +10,8 @@ namespace CodeFirstTutorial
 {
     class UserContext : DbContext
     {
-        public UserContext() : base("DBConnection") { }
+        
+        public UserContext() : base("DBConnection") { Database.SetInitializer(new DropCreateDatabaseAlways<UserContext>()); }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Sarea> Sareas { get; set; }
