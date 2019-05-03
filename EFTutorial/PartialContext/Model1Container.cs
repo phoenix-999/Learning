@@ -14,6 +14,7 @@ namespace EFTutorial
         static Model1Container()
         {
             DbInterception.Add(new NLogCommandInterceptor());
+            Database.SetInitializer<Model1Container>(new DropCreateDatabaseAlways<Model1Container>());
         }
 
         private void DefaultLogger(string message)
