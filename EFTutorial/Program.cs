@@ -138,7 +138,7 @@ namespace EFTutorial
                 Console.WriteLine("Db data after changes:");
                 foreach (var phone in ctx.Phones)
                 {
-                    Console.WriteLine(phone.GetAllFieldsInString());
+                    Console.WriteLine(phone);
                 }
             }
 
