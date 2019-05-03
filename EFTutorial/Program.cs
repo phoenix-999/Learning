@@ -14,7 +14,9 @@ namespace EFTutorial
             ClearDb();
             AddDefaultData();
             LocalChanged();
-            
+            LiqnGroupBy();
+
+
         }
 
         static void ClearDb()
@@ -76,6 +78,13 @@ namespace EFTutorial
                 Price = 8000,
                 Company = microsoft
             };
+            Phone nokiaLumia830_v2 = new Phone()
+            {
+                Model = "Nokia Lumia 830",
+                ModelDetail = "V 2.0",
+                Price = 8000,
+                Company = microsoft
+            };
             Phone nokiaLumia930 = new Phone()
             {
                 Model = "Nokia Lumia 930",
@@ -92,7 +101,7 @@ namespace EFTutorial
 
             using (Model1Container ctx = new Model1Container())
             {
-                Phone[] phones = new Phone[] { samsungS5, samsungS6, nokiaLumia830, nokiaLumia930, nokiaLumia1030 };
+                Phone[] phones = new Phone[] { samsungS5, samsungS6, nokiaLumia830, nokiaLumia830_v2, nokiaLumia930, nokiaLumia1030 };
                 ctx.Phones.AddRange(phones);
 
                 //При переопредлении методов Equals и GetHashCode - Навигационные свойства после первого обращения может удаляются с последующих классов.
@@ -120,7 +129,10 @@ namespace EFTutorial
             Console.WriteLine("Local data:");
             foreach (Phone phone in phones)
             {
-                phone.ModelDetail = "no detail";
+                if (phone.ModelDetail == null)
+                {
+                    phone.ModelDetail = "no detail";
+                }
                 Console.WriteLine(phone);                
             }
 
@@ -143,6 +155,32 @@ namespace EFTutorial
             }
 
 
+        }
+
+        static void LiqnGroupBy()
+        {
+            Console.WriteLine("\nLINQ GROUP BY");
+            using (Model1Container ctx = new Model1Container())
+            {
+                var query = from phone in ctx.Phones
+                                          let FullModel = phone.Model + " " + phone.ModelDetail
+                                          where phone.Company.Geography.Region != null
+                                          group new { FullModel, phone.Price} by phone.Price into phonesModels
+                                          select new { Key = phonesModels.Key, Count = phonesModels.Count(), Group = phonesModels };
+
+                Console.WriteLine("SQL запрос: \n\t {0}", query);
+
+                Console.WriteLine("\n\tВывод содержимого выборки:");
+                foreach (var group in query)
+                {
+                    int sum = 0;
+                    foreach (var fullModel in group.Group)
+                    {
+                         sum += fullModel.Price;
+                    }
+                    Console.WriteLine("\tKey = {0}, Sum = {1}", group.Key, sum);
+                }
+            }
         }
     }
 }
