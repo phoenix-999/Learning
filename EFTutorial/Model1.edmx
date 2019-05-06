@@ -93,7 +93,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Model" Type="String" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="ModelDetail" Type="String" Nullable="true" />
+          <Property Name="ModelDetail" Type="String" Nullable="true" ConcurrencyMode="None" />
           <NavigationProperty Name="Company" Relationship="Model1.CompaniesPhones" FromRole="Phones" ToRole="Companies" />
         </EntityType>
         <EntityType Name="Company">

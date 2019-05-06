@@ -17,6 +17,7 @@ namespace EFTutorial
             AddDefaultData();
             LocalChanged();
             LiqnGroupBy();
+            UpdateData();
 
             Console.ReadKey();
         }
@@ -187,6 +188,20 @@ namespace EFTutorial
                     }
                     Console.WriteLine("\tKey = {0}, Sum = {1}", group.Key, sum);
                 }
+            }
+        }
+
+        static void UpdateData()
+        {
+            using (Model1Container ctx = new Model1Container())
+            {
+                foreach (Phone phone in ctx.Phones )
+                {
+                    phone.ModelDetail = "To Update";
+                    Console.WriteLine("OriginalValues = {0}", ctx.Entry<Phone>(phone).OriginalValues.GetValue<string>("ModelDetail"));
+                }
+
+                ctx.SaveChanges();
             }
         }
     }
