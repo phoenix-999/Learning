@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Threading;
 
 namespace EFTutorial
 {
@@ -11,12 +12,13 @@ namespace EFTutorial
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Main thread = {0}", Thread.CurrentThread.ManagedThreadId);
             ClearDb();
             AddDefaultData();
             LocalChanged();
             LiqnGroupBy();
 
-
+            Console.ReadKey();
         }
 
         static void ClearDb()
@@ -42,7 +44,7 @@ namespace EFTutorial
             }
         }
 
-        static void AddDefaultData()
+        async static void AddDefaultData()
         {
 
             Geography koreaSeul = new Geography() { Country = "South Korea", City = "Seul" };
@@ -63,7 +65,6 @@ namespace EFTutorial
                 Model = "S6",
                 Price = 15000,
                 Company = samsung
-
             };
 
             Geography usaWashington = new Geography() { Country = "USA", Region = "Washington", City = "Redmond" };
@@ -109,7 +110,11 @@ namespace EFTutorial
                 //Метод SaveChanges() используетколлекцию которая и использует GetHashCode и Equals
                 //Необходимо учитывать это при переопределении методов
                 //В случае, если IDictionary выявит 2 идентичных экземпляров - навигационное свойство второго (и третьего и т.д.) будет null
+                
                 ctx.SaveChanges();
+
+                //Асинхорнный вызов
+                //await ctx.SaveChangesAsync();
 
                 Console.WriteLine("Default data added.");
             }
@@ -117,6 +122,7 @@ namespace EFTutorial
 
         static void LocalChanged()
         {
+            Console.WriteLine("LocalChanged Thread = {0}", Thread.CurrentThread.ManagedThreadId);
             IEnumerable<Phone> phones;
             //Выгрузка данных с БД
             using (Model1Container ctx = new Model1Container())
@@ -159,7 +165,8 @@ namespace EFTutorial
 
         static void LiqnGroupBy()
         {
-            Console.WriteLine("\nLINQ GROUP BY");
+
+            Console.WriteLine("LiqnGroupBy Thread = {0}", Thread.CurrentThread.ManagedThreadId);
             using (Model1Container ctx = new Model1Container())
             {
                 var query = from phone in ctx.Phones

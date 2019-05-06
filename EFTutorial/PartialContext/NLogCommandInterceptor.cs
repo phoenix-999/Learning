@@ -16,7 +16,7 @@ namespace EFTutorial
         public void NonQueryExecuting(
             DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
         {
-            LogIfNonAsync(command, interceptionContext);
+            LogIfAsync(command, interceptionContext);
         }
 
         public void NonQueryExecuted(
@@ -28,7 +28,7 @@ namespace EFTutorial
         public void ReaderExecuting(
             DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
         {
-            LogIfNonAsync(command, interceptionContext);
+            LogIfAsync(command, interceptionContext);
         }
 
         public void ReaderExecuted(
@@ -40,7 +40,7 @@ namespace EFTutorial
         public void ScalarExecuting(
             DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
         {
-            LogIfNonAsync(command, interceptionContext);
+            LogIfAsync(command, interceptionContext);
         }
 
         public void ScalarExecuted(
@@ -49,12 +49,12 @@ namespace EFTutorial
             LogIfError(command, interceptionContext);
         }
 
-        private void LogIfNonAsync<TResult>(
+        private void LogIfAsync<TResult>(
             DbCommand command, DbCommandInterceptionContext<TResult> interceptionContext)
         {
-            if (!interceptionContext.IsAsync)
+            if (interceptionContext.IsAsync)
             {
-                Logger.Warn("Non-async command used: {0}", command.CommandText);
+                Logger.Warn("Async command used: {0}", command.CommandText);
             }
         }
 
