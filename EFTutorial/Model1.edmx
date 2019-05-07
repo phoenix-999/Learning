@@ -4,72 +4,73 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="Model1StoreContainer">
-    <EntitySet Name="Phones" EntityType="Model1.Store.Phones" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Companies" EntityType="Model1.Store.Companies" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Geography" EntityType="Model1.Store.Geography" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="CompaniesPhones" Association="Model1.Store.CompaniesPhones">
-      <End Role="Companies" EntitySet="Companies" />
-      <End Role="Phones" EntitySet="Phones" />
-    </AssociationSet>
-    <AssociationSet Name="GeographyCompany" Association="Model1.Store.GeographyCompany">
-      <End Role="Geography" EntitySet="Geography" />
-      <End Role="Company" EntitySet="Companies" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Phones">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Model" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Price" Type="int" Nullable="false" />
-    <Property Name="ModelDetail" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Company_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Companies">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Geography_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Geography">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Region" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <Association Name="CompaniesPhones">
-    <End Role="Companies" Type="Model1.Store.Companies" Multiplicity="1" />
-    <End Role="Phones" Type="Model1.Store.Phones" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Companies">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Phones">
-        <PropertyRef Name="Company_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="GeographyCompany">
-    <End Role="Geography" Type="Model1.Store.Geography" Multiplicity="1" />
-    <End Role="Company" Type="Model1.Store.Companies" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Geography">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Company">
-        <PropertyRef Name="Geography_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Geography_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Geography">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Region" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Phones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Model" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="ModelDetail" Type="nvarchar(max)" />
+          <Property Name="Company_Id" Type="int" Nullable="false" />
+          <Property Name="ActionDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_CompaniesPhones">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="Phones" Type="Self.Phones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Phones">
+              <PropertyRef Name="Company_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeographyCompany">
+          <End Role="Geography" Type="Self.Geography" Multiplicity="1" />
+          <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Geography">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Companies">
+              <PropertyRef Name="Geography_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Model1StoreContainer">
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Geography" EntityType="Self.Geography" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phones" EntityType="Self.Phones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CompaniesPhones" Association="Self.FK_CompaniesPhones">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Phones" EntitySet="Phones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeographyCompany" Association="Self.FK_GeographyCompany">
+            <End Role="Geography" EntitySet="Geography" />
+            <End Role="Companies" EntitySet="Companies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -91,17 +92,18 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Model" Type="String" Nullable="false" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="ModelDetail" Type="String" Nullable="true" ConcurrencyMode="None" />
+          <Property Name="ModelDetail" Type="String" Nullable="true" ConcurrencyMode="None" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Company" Relationship="Model1.CompaniesPhones" FromRole="Phones" ToRole="Companies" />
+          <Property Name="ActionDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyName" Type="String" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Phones" Relationship="Model1.CompaniesPhones" FromRole="Companies" ToRole="Phones" />
           <NavigationProperty Name="Geography" Relationship="Model1.GeographyCompany" FromRole="Company" ToRole="Geography" />
         </EntityType>
@@ -114,9 +116,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Country" Type="String" Nullable="false" />
-          <Property Name="Region" Type="String" Nullable="true" />
-          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Region" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Companies" Relationship="Model1.GeographyCompany" FromRole="Geography" ToRole="Company" />
         </EntityType>
         <Association Name="GeographyCompany">
@@ -132,7 +134,8 @@
     <EntitySetMapping Name="Phones">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Phone)">
         <MappingFragment StoreEntitySet="Phones">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Model" ColumnName="Model" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="ModelDetail" ColumnName="ModelDetail" />
@@ -189,6 +192,7 @@
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

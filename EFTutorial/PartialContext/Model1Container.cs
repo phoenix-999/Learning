@@ -18,7 +18,8 @@ namespace EFTutorial
         static Model1Container()
         {
             DbInterception.Add(new NLogCommandInterceptor());
-            //Database.SetInitializer<Model1Container>(new DropCreateDatabaseAlways<Model1Container>());
+            //Работает только в CodeFirst
+            //Database.SetInitializer<Model1Container>(new MigrateDatabaseToLatestVersion<Model1Container, Migrations.Configuration>(true, new Migrations.Configuration()));
         }
 
         private void DefaultLogger(string message)

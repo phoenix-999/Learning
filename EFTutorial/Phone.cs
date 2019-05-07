@@ -18,6 +18,7 @@ namespace EFTutorial
         public string Model { get; set; }
         public int Price { get; set; }
         public string ModelDetail { get; set; }
+        public Nullable<System.DateTime> ActionDate { get; set; }
     
         public virtual Company Company { get; set; }
     }
