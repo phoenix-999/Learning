@@ -94,7 +94,7 @@ namespace EFTutorial
                 catch(DbUpdateConcurrencyException ex)
                 {
                     saveFailed = true;
-                    var entry = ex.Entries.Single(); //Перезагрузка исходного значения свойства сущности с БД для решения проблемы оптимистичного параллелизма. Приоритет клиента
+                    var entry = ex.Entries.Single(); //Перезагрузка исходного значения свойства сущности с БД для решения проблемы оптимистичного параллелизма.
                     entry.OriginalValues.SetValues(entry.GetDatabaseValues()); 
                 }
             }while (saveFailed) ;
