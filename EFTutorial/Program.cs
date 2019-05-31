@@ -13,7 +13,11 @@ namespace EFTutorial
         static void Main(string[] args)
         {
             Console.WriteLine("Main thread = {0}", Thread.CurrentThread.ManagedThreadId);
-            ClearDb();
+            try
+            {
+                ClearDb();
+            }
+            catch { }
             AddDefaultData();
             LocalChanged();
             LiqnGroupBy();
