@@ -131,6 +131,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "Windows
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheduller", "Sheduller\Sheduller.csproj", "{94E77533-F58D-44EF-ABDD-B9676675A25D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAwaitCancel", "AsyncAwaitCancel\AsyncAwaitCancel.csproj", "{C603234E-FA14-4E1B-B3A9-64EEFFBE57E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -369,6 +371,10 @@ Global
 		{94E77533-F58D-44EF-ABDD-B9676675A25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94E77533-F58D-44EF-ABDD-B9676675A25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94E77533-F58D-44EF-ABDD-B9676675A25D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C603234E-FA14-4E1B-B3A9-64EEFFBE57E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C603234E-FA14-4E1B-B3A9-64EEFFBE57E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C603234E-FA14-4E1B-B3A9-64EEFFBE57E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C603234E-FA14-4E1B-B3A9-64EEFFBE57E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -403,6 +409,7 @@ Global
 		{BB09FD97-B93A-4858-B073-88C6E5420833} = {110C65B4-A290-4456-93C9-67DE36D8A410}
 		{46DD0CA9-E384-47B6-954F-F2D23362AF8C} = {0764028F-BDD9-4FE4-BF3B-F746FA9937CE}
 		{94E77533-F58D-44EF-ABDD-B9676675A25D} = {329F4F62-5259-4DDB-8C29-D00108683CD1}
+		{C603234E-FA14-4E1B-B3A9-64EEFFBE57E7} = {329F4F62-5259-4DDB-8C29-D00108683CD1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12BF4283-6EFD-433F-9B74-835D734E5B63}
