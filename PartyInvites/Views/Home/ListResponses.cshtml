@@ -9,28 +9,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ListResponses</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
-    <h2>Here is t he list of people attending t he pa rty</h2>
+    <div class="panel-body text-center">
+        <h2>Here is t he list of people attending t he pa rty</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var m in Model)
-            {
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
                 <tr>
-                    <td>@m.Name</td>
-                    <td>@m.Email</td>
-                    <td>@m.Phone</td>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var m in Model)
+                {
+                    <tr>
+                        <td>@m.Name</td>
+                        <td>@m.Email</td>
+                        <td>@m.Phone</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
