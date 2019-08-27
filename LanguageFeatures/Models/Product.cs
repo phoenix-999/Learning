@@ -15,10 +15,11 @@ namespace LanguageFeatures.Models
 
         public Product Related { get; set; }
 
-        public Product(bool stock = true)
-        {
+        public bool NameBeginsWithS => Name?[0] == 'S';
+
+        public Product(bool stock = true) =>
             InStock = stock;
-        }
+
 
         public static Product[] GetProducts()
         {
