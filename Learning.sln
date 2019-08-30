@@ -137,7 +137,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseMiddleware", "UseMiddlew
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyInvites", "PartyInvites\PartyInvites.csproj", "{53863627-2DD5-4F9B-8BAB-B7486DB08CD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageFeatures", "LanguageFeatures\LanguageFeatures.csproj", "{23F9882D-444E-41DD-AA6F-F5AC5E405AFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguageFeatures", "LanguageFeatures\LanguageFeatures.csproj", "{23F9882D-444E-41DD-AA6F-F5AC5E405AFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razor", "Razor\Razor.csproj", "{7F3607C8-880A-42C3-8440-BFCB2D9CE937}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -393,6 +395,10 @@ Global
 		{23F9882D-444E-41DD-AA6F-F5AC5E405AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23F9882D-444E-41DD-AA6F-F5AC5E405AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23F9882D-444E-41DD-AA6F-F5AC5E405AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F3607C8-880A-42C3-8440-BFCB2D9CE937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F3607C8-880A-42C3-8440-BFCB2D9CE937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F3607C8-880A-42C3-8440-BFCB2D9CE937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F3607C8-880A-42C3-8440-BFCB2D9CE937}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -431,6 +437,7 @@ Global
 		{257162DA-9C9F-4566-8054-176DFC016A18} = {80946349-2AEB-4184-9E10-44D1595D3967}
 		{53863627-2DD5-4F9B-8BAB-B7486DB08CD0} = {80946349-2AEB-4184-9E10-44D1595D3967}
 		{23F9882D-444E-41DD-AA6F-F5AC5E405AFF} = {80946349-2AEB-4184-9E10-44D1595D3967}
+		{7F3607C8-880A-42C3-8440-BFCB2D9CE937} = {80946349-2AEB-4184-9E10-44D1595D3967}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12BF4283-6EFD-433F-9B74-835D734E5B63}
