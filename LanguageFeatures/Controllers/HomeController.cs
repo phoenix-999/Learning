@@ -16,10 +16,8 @@ namespace LanguageFeatures.Controllers
 
             foreach (var p in Product.GetProducts())
             {
-                string name = p?.Name;
-                decimal? price = p?.Price;
                 string relatedName = p?.Related?.Name ?? "<None>";
-                results.Add($"Name: {name}, Price: {price:C2}, Related: {relatedName}");
+                results.Add($"{nameof(p.Name)}: {p?.Name}, {nameof(p.Price)}: {p?.Price:C2}, Related: {relatedName}");
             }
 
             ShoppingCart shoppingCart = new ShoppingCart();
