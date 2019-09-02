@@ -2,18 +2,11 @@
 @model Product;
 
 @{
-    Layout = null;
+    Layout = "_BasicLayout";
+    ViewBag.Title = "Product Name";
 }
 
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    @Model.Name
-    
-</body>
-</html>
+
+Product Name = @Model.Name
+
 
