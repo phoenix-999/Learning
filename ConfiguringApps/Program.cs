@@ -21,6 +21,13 @@ namespace ConfiguringApps
             new WebHostBuilder()
             .UseKestrel()
             .UseContentRoot(Directory.GetCurrentDirectory())
+            .ConfigureAppConfiguration((hostContext, configBuilder)=>
+                {
+                    configBuilder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                    configBuilder.AddEnvironmentVariables();
+                    if (args != null)
+                        configBuilder.AddCommandLine(args);
+                })
             .UseIISIntegration()
             .UseStartup<Startup>();
     }

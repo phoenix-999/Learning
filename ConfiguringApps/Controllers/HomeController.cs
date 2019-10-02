@@ -16,11 +16,28 @@ namespace ConfiguringApps.Controllers
             this.uptimeService = uptimeService;
         }
 
-        public IActionResult Index() =>
-            View(new Dictionary<string, string>
+        public IActionResult Index(bool throwException = false)
+        {
+            if (throwException)
+            {
+                throw new NullReferenceException();
+            }
+
+            return View(new Dictionary<string, string>
             {
                 { "Message", "This is the Index action" },
                 { "Uptime", $"{uptimeService.Uptime}ms"}
             });
+        }
+
+        public IActionResult Error()
+        {
+            return View(
+                nameof(Index),
+                new Dictionary<string, string>
+                    {
+                        {"Message", "This is the Error action" }
+                    });
+        }
     }
 }
