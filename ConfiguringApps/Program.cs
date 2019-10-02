@@ -28,6 +28,12 @@ namespace ConfiguringApps
                     if (args != null)
                         configBuilder.AddCommandLine(args);
                 })
+            .ConfigureLogging((hostContext, loggingBuilder) =>
+                {
+                    loggingBuilder.AddConfiguration(hostContext.Configuration.GetSection("Logging"));
+                    loggingBuilder.AddConsole();
+                    loggingBuilder.AddDebug();
+                })
             .UseIISIntegration()
             .UseStartup<Startup>();
     }
