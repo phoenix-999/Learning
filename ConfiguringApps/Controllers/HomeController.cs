@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ConfiguringApps.Infrastructure;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace ConfiguringApps.Controllers
 {
@@ -14,10 +15,13 @@ namespace ConfiguringApps.Controllers
 
         private ILogger<HomeController> logger;
 
-        public HomeController(UptimeService uptimeService, ILogger<HomeController> log)
+        IConfiguration Configuration { get; }
+
+        public HomeController(UptimeService uptimeService, ILogger<HomeController> log, IConfiguration config)
         {
             this.uptimeService = uptimeService;
             this.logger = log;
+            Configuration = config;
         }
 
         public IActionResult Index(bool throwException = false)
@@ -31,7 +35,7 @@ namespace ConfiguringApps.Controllers
             return View(new Dictionary<string, string>
             {
                 { "Message", "This is the Index action" },
-                { "Uptime", $"{uptimeService.Uptime}ms"}
+                { "Uptime", $"{uptimeService.Uptime}ms, configuration EnableBrowserShortCircuit = {(Configuration.GetSection("ShortCircuitMiddleware")?.GetValue<bool>("EnableBrowserShortCircuit")).Value}"}
             });
         }
 

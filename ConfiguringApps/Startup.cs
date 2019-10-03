@@ -25,8 +25,18 @@ namespace ConfiguringApps
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<UptimeService>();
-            services.AddMvc();
+            services.AddMvc().AddMvcOptions(options =>
+                {
+                    options.RespectBrowserAcceptHeader = true;
+                });
         }
+
+        //Метод перенесен в конфигурационный класс StartupDevelopment
+        //public void ConfigureDevelopmentServices(IServiceCollection services)
+        //{
+        //    services.AddSingleton<UptimeService>();
+        //    services.AddMvc();
+        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -39,16 +49,7 @@ namespace ConfiguringApps
             }
             //app.UseMiddleware<ContentMiddleware>();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseStatusCodePages();
-                app.UseBrowserLink();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+            app.UseExceptionHandler("/Home/Error");
 
             app.UseStaticFiles();
             app.UseMvc(routes =>
@@ -56,5 +57,15 @@ namespace ConfiguringApps
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+        //Метод перенесен в конфигурационный класс StartupDevelopment
+        //public void ConfigureDevelopment(IApplicationBuilder app, IHostingEnvironment env)
+        //{
+        //    app.UseDeveloperExceptionPage();
+        //    app.UseStatusCodePages();
+        //    app.UseBrowserLink();
+        //    app.UseStaticFiles();
+        //    app.UseMvcWithDefaultRoute();
+        //}
     }
 }

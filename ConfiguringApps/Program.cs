@@ -7,8 +7,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Reflection; 
 
-namespace ConfiguringApps
+    namespace ConfiguringApps
 {
     public class Program
     {
@@ -23,7 +24,9 @@ namespace ConfiguringApps
             .UseContentRoot(Directory.GetCurrentDirectory())
             .ConfigureAppConfiguration((hostContext, configBuilder)=>
                 {
+                    var env = hostContext.HostingEnvironment;
                     configBuilder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                configBuilder.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
                     configBuilder.AddEnvironmentVariables();
                     if (args != null)
                         configBuilder.AddCommandLine(args);
@@ -35,6 +38,10 @@ namespace ConfiguringApps
                     loggingBuilder.AddDebug();
                 })
             .UseIISIntegration()
-            .UseStartup<Startup>();
+            .UseDefaultServiceProvider((hostBuilderContext, options) =>
+                {
+                    options.ValidateScopes = hostBuilderContext.HostingEnvironment.IsDevelopment();
+                })
+            .UseStartup(nameof(ConfiguringApps));
     }
 }
