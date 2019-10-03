@@ -151,7 +151,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore", "SportsStore\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore.Tests", "SportsStore.Tests\SportsStore.Tests.csproj", "{1B0EF798-2101-4190-BF78-A8BF9CC99A0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfiguringApps", "ConfiguringApps\ConfiguringApps.csproj", "{47D92828-C28B-4C1C-B8DC-317D2B721827}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfiguringApps", "ConfiguringApps\ConfiguringApps.csproj", "{47D92828-C28B-4C1C-B8DC-317D2B721827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlsAndRoutes", "UrlsAndRoutes\UrlsAndRoutes.csproj", "{65F73580-205C-495F-801F-C723C3B18516}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -427,6 +429,10 @@ Global
 		{47D92828-C28B-4C1C-B8DC-317D2B721827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47D92828-C28B-4C1C-B8DC-317D2B721827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47D92828-C28B-4C1C-B8DC-317D2B721827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F73580-205C-495F-801F-C723C3B18516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F73580-205C-495F-801F-C723C3B18516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F73580-205C-495F-801F-C723C3B18516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F73580-205C-495F-801F-C723C3B18516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -473,6 +479,7 @@ Global
 		{2558933F-5272-438C-B6CB-A82B2F6F993B} = {DC542A58-BA48-4A8F-AC2A-F55A1EE451D1}
 		{1B0EF798-2101-4190-BF78-A8BF9CC99A0E} = {DC542A58-BA48-4A8F-AC2A-F55A1EE451D1}
 		{47D92828-C28B-4C1C-B8DC-317D2B721827} = {80946349-2AEB-4184-9E10-44D1595D3967}
+		{65F73580-205C-495F-801F-C723C3B18516} = {80946349-2AEB-4184-9E10-44D1595D3967}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12BF4283-6EFD-433F-9B74-835D734E5B63}

@@ -1,0 +1,19 @@
+﻿@model Result
+
+<table class="table table-bordered table-stripped table-sm">
+    <tr>
+        <th>Controller</th>
+        <td>@Model.Controller</td>
+    </tr>
+    <tr>
+        <th>Action:</th>
+        <td>@Model.Action</td>
+    </tr>
+    @foreach(var key in Model.Data.Keys)
+    {
+        <th>@key:</th>
+        <td>@Model.Data[@key]</td>
+    }
+</table>
+
+
