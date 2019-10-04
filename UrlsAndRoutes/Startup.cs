@@ -30,7 +30,7 @@ namespace UrlsAndRoutes
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvcWithDefaultRoute(); //для использования аттрибута Route. Атррибут имеет больший приоритет по сравнению с app.UseMvc(routing =>...
             //app.UseMvc(routing =>
             //{
             //    //routing.MapRoute(name: "ShopSchema2", template: "Shop/OldAction", defaults: new { controller = "Home", action = "Index" });
@@ -39,7 +39,7 @@ namespace UrlsAndRoutes
             //    //routing.MapRoute(name: "default", template: "{controller=Home}/{action=Index}");
             //    //routing.MapRoute(name: "", template: "Public/{controller=Home}/{action=Index}");
 
-                
+
             //    routing.MapRoute(name: "MyRouteHome", template: "{controller:regex(^H.*)=Home}/{action:regex(^Index$|^About$)=Index}/{id:alpha:minlength(2)?}");
 
             //    //Собственные специальные ограничения
