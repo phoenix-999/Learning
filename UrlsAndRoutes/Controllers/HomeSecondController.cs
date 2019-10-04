@@ -8,18 +8,18 @@ using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace UrlsAndRoutes.Controllers
 {
-    public class HomeController : Controller
+    public class HomeSecondController : Controller
     {
         public IActionResult Index()
         {
-            return View("Result", new Result { Controller = nameof(HomeController), Action = nameof(Index)});
+            return View("Result", new Result { Controller = nameof(HomeSecondController), Action = nameof(Index)});
         }
 
         public IActionResult CustomValidate(string id)
         {
             Result r = new Result
             {
-                Controller = nameof(HomeController),
+                Controller = nameof(HomeSecondController),
                 Action = nameof(CustomValidate)
             };
 

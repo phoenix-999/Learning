@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UrlsAndRoutes.Models;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace UrlsAndRoutes.Controllers
 {
+    [Route("app/[controller]/actions/[action]/{id:weekday?}")]
     public class CustomerController : Controller
     {
         public IActionResult Index()
@@ -14,9 +16,17 @@ namespace UrlsAndRoutes.Controllers
             return View("Result", new Result { Controller = nameof(CustomerController), Action = nameof(Index)});
         }
 
-        public IActionResult List()
+        public IActionResult List(string id)
         {
-            return View("Result", new Result { Controller = nameof(CustomerController), Action = nameof(List) });
+            Result r = new Result
+            {
+                Controller = nameof(CustomerController),
+                Action = nameof(List)
+            };
+            r.Data["Id"] = id ?? "<not value>";
+            r.Data["catchall"] = RouteData.Values["catchall"];
+
+            return View("Result", r);
         }
     }
 }
