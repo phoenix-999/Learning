@@ -15,7 +15,7 @@ namespace UrlsAndRoutes.Controllers
             return View("Result", new Result { Controller = nameof(HomeController), Action = nameof(Index)});
         }
 
-        public IActionResult CustomValidate(string id)
+        public IActionResult CustomValidate(string id, string other)
         {
             Result r = new Result
             {
@@ -24,6 +24,8 @@ namespace UrlsAndRoutes.Controllers
             };
 
             r.Data["Id"] = id ?? "<no value>";
+            r.Data["Other"] = other ?? "<no value>";
+            r.Data["Url"] = Url.Action("CustomValidate", "Home", new { id = 5, other = "other"});
 
             return View("Result", r);
         }

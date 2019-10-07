@@ -15,5 +15,14 @@
         <td>@Model.Data[@key]</td>
     }
 </table>
+<a asp-controller="Home" asp-action="CustomValidate" asp-route-id="asp-route-id = 5">This is an outgoing URL</a>
+<br>
+<a asp-route="out">This is an outgoing URL</a>
+<br>
+<a asp-controller="Admin" asp-action="Index">This targets another controller</a>
+<br>
+<a asp-controller="Customer" asp-action="Index">This is CustomerController</a>
+<br>
+<p>URL: @Url.Action("CustomValidate", "Home", new { id = 5})</p>
 
 
