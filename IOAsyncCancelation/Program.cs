@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace IOAsyncCancelation
 {
+    //Не работает должным образом. Задача все равно выполняется до конца
     class Program
     {
         static void Main(string[] args)
@@ -27,6 +28,7 @@ namespace IOAsyncCancelation
                 await Task.Run(() => {
                     Console.WriteLine("Task Run. thread id = {0}", Thread.CurrentThread.ManagedThreadId); //Выполняеться во вторичном потоке
                     Thread.Sleep(10000);
+                    Console.WriteLine("Task is completed. thread id = {0}", Thread.CurrentThread.ManagedThreadId);//Все равно выполнится, независимо от зпроса отмены
                     }).WithCancelation(ct);//Выполняеться в вызывающем потоке
                 Console.WriteLine("Task completed. thread id = {0}", Thread.CurrentThread.ManagedThreadId);
             }
