@@ -10,15 +10,15 @@ namespace DependencyInjection.Controllers
     public class HomeController : Controller
     {
         IRepository _repository;
-        ProductTotalizer _totalizer;
+        //ProductTotalizer _totalizer;
 
-        public HomeController(IRepository repository, ProductTotalizer productTotalizer)
+        public HomeController(IRepository repository)//, ProductTotalizer productTotalizer)
         {
             _repository = repository;
-            _totalizer = productTotalizer;
+            //_totalizer = productTotalizer;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromServices]ProductTotalizer _totalizer)
         {
             ViewData["Total"] = _totalizer.Total;
             ViewBag.Total = _totalizer.Total;
