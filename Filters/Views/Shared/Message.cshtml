@@ -1,0 +1,19 @@
+﻿@if(Model is string)
+{
+    <p>@Model</p>
+}
+else if (@Model is Dictionary<string, string>)
+{
+    var dict = Model as Dictionary<string, string>;
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr><th>Key</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+            @foreach(var kvp in @Model)
+            {
+                <tr><td>@kvp.Key</td><td>@kvp.Value</td></tr>
+            }
+        </tbody>
+    </table>
+}
