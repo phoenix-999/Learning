@@ -9,7 +9,7 @@ namespace Filters.Controllers
 {
     //[RequireHttps]
     [HttpsOnly]
-    [Profile] //Так как фильтр дописывает данные в тело ответа на сталии пост обработки, содержимое ответа метода действия будет сохранено
+    [Profile] //Так как фильтр дописывает данные в тело ответа на стадии пост обработки, содержимое ответа метода действия будет сохранено
     [ViewResultDetails]
     [RangeException]
     public class HomeController : Controller
