@@ -8,23 +8,35 @@ using System.Text;
 
 namespace Filters.Infrastructure
 {
-    public class ProfileAttribute : Attribute, IActionFilter //или можно наследовать от ActionFilterAttribute и переопредлить те же методы
+    public class ProfileAttribute : ActionFilterAttribute
     {
         Stopwatch timer;
 
-        public void OnActionExecuting(ActionExecutingContext context)
+        double actionTime;
+
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
             timer = Stopwatch.StartNew();
         }
 
 
-        public void OnActionExecuted(ActionExecutedContext context)
+        public override void OnActionExecuted(ActionExecutedContext context)
         {
+            actionTime = timer.Elapsed.TotalMilliseconds;
+        }
+
+        public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
+        {
+            await next();//выполнения обработки результата действия инфраструктурой MVC
+
             timer.Stop();
 
-            var message = $"<div>Elapsed time: {timer.ElapsedMilliseconds}</div>";
-            byte[] bytes = Encoding.UTF8.GetBytes(message);
-            context.HttpContext.Response.Body.Write(bytes);
+            string result = $"<div>Action time = {actionTime} ms</div" +
+                $"<div>Total tile = {timer.Elapsed.TotalMilliseconds}";
+
+            byte[] bytes = Encoding.UTF8.GetBytes(result);
+
+            await context.HttpContext.Response.Body.WriteAsync(bytes);
         }
     }
 }
