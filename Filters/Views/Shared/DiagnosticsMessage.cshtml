@@ -1,0 +1,13 @@
+﻿@model IEnumerable<string>
+
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr><th>Diagnostics Information</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var s in @Model)
+        {
+            <tr><td>@s</td></tr>
+        }
+    </tbody>
+</table>
