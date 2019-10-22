@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Filters.Infrastructure
 {
-    public class DefaultDiagnostics : IActionFilter, IResultFilter
+    public class DefaultDiagnosticsFilter : IActionFilter, IResultFilter
     {
         IDiagnostics diagnostics;
 
         Stopwatch timer;
 
-        public DefaultDiagnostics(IDiagnostics diagnostics)
+        public DefaultDiagnosticsFilter(IDiagnostics diagnostics)
         {
             this.diagnostics = diagnostics;
         }

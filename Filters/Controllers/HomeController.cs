@@ -11,7 +11,7 @@ namespace Filters.Controllers
     //[Profile] //Так как фильтр дописывает данные в тело ответа на стадии пост обработки, содержимое ответа метода действия будет сохранено
     [ViewResultDetails]
     [RangeException]
-    [TypeFilter(typeof(DefaultDiagnostics))]
+    [TypeFilter(typeof(DefaultDiagnosticsFilter))]
     public class HomeController : Controller
     {
         public IActionResult Index()
