@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using ApiControllers.Models;
+using ApiControllers.Infrastructure.CustomFormatters;
 
 namespace ApiControllers
 {
@@ -18,7 +19,9 @@ namespace ApiControllers
         {
             services.AddSingleton<IRepository, MemoryRepository>();
 
-            services.AddMvc();
+            var mvc = services.AddMvc();
+            mvc.AddXmlDataContractSerializerFormatters();
+            mvc.AddDefaultCustomFormatter(); ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
