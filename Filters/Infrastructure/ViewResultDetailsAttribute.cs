@@ -12,29 +12,7 @@ namespace Filters.Infrastructure
 {
     public class ViewResultDetailsAttribute : ResultFilterAttribute
     {
-        public override void OnResultExecuting(ResultExecutingContext context)
-        {
-            Dictionary<string, string> details = new Dictionary<string, string>();
-
-            ViewResult vr = context.Result as ViewResult;
-
-            if(vr != null)
-            {
-                details["ViewName"] = vr.ViewName;
-                details["Model Type"] = vr.Model.GetType().ToString();
-                details["Model content"] = vr.Model.ToString();
-                details["Is async"] = false.ToString();
-            }
-
-            context.Result = new ViewResult
-            {
-                ViewName = "Message",
-                ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { Model = details}
-            };
-        }
-
-        //Стандартная реализация асинхронного метода вызывает свои синхронные аналоги
-        public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
+        public override void OnResultExecuting(ResultExecutingContext context)//Отработает если нет исключения в методе действия или оно было обработано в фильтре пост действия
         {
             Dictionary<string, string> details = new Dictionary<string, string>();
 
@@ -45,25 +23,53 @@ namespace Filters.Infrastructure
                 details["ViewName"] = vr.ViewName;
                 details["Model Type"] = vr.Model.GetType().ToString();
                 details["Model content"] = vr.Model.ToString();
-                details["Is async"] = true.ToString();
+                details["Is async"] = false.ToString();
+
+                context.Result = new ViewResult
+                {
+                    ViewName = "Message",
+                    ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { Model = details }
+                };
             }
 
             context.Result = new ViewResult
             {
                 ViewName = "Message",
-                ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { Model = details }
+                ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { Model = "on action executing" }
             };
-
-            await next();
         }
 
-        //public override async void OnResultExecuted(ResultExecutedContext context)
+        //Стандартная реализация асинхронного метода вызывает свои синхронные аналоги
+        //public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         //{
-        //    string controllerName = context.Controller.ToString();
-        //    string actionName = context.ActionDescriptor.DisplayName;
-        //    string message = $@"OnResultExecuted";
-        //    byte[] bytes = Encoding.UTF8.GetBytes(message);
-        //    await context.HttpContext.Response.Body.WriteAsync(bytes);
+        //    Dictionary<string, string> details = new Dictionary<string, string>();
+
+        //    ViewResult vr = context.Result as ViewResult;
+
+        //    if (vr != null)
+        //    {
+        //        details["ViewName"] = vr.ViewName;
+        //        details["Model Type"] = vr.Model.GetType().ToString();
+        //        details["Model content"] = vr.Model.ToString();
+        //        details["Is async"] = true.ToString();
+        //    }
+
+        //    context.Result = new ViewResult
+        //    {
+        //        ViewName = "Message",
+        //        ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { Model = details }
+        //    };
+
+        //    await next();
         //}
+
+        public override async void OnResultExecuted(ResultExecutedContext context) //Отработает если нету исключения и есть результат действия (свойство Result)
+        {
+            string controllerName = context.Controller.ToString();
+            string actionName = context.ActionDescriptor.DisplayName;
+            string message = $@"OnResultExecuted {(context.Result as ViewResult).Model.GetType()}";
+            byte[] bytes = Encoding.UTF8.GetBytes(message);
+            await context.HttpContext.Response.Body.WriteAsync(bytes);
+        }
     }
 }

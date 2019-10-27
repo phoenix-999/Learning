@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Filters.Infrastructure
 {
@@ -23,6 +26,7 @@ namespace Filters.Infrastructure
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             actionTime = timer.Elapsed.TotalMilliseconds;
+            //context.ExceptionHandled = true;
         }
 
         public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)

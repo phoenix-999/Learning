@@ -8,10 +8,10 @@ using Filters.Infrastructure;
 namespace Filters.Controllers
 {
     //[RequireHttps]
-    //[Profile] //Так как фильтр дописывает данные в тело ответа на стадии пост обработки, содержимое ответа метода действия будет сохранено
+    [Profile] //Так как фильтр дописывает данные в тело ответа на стадии пост обработки, содержимое ответа метода действия будет сохранено
     [ViewResultDetails]
     [RangeException]
-    [TypeFilter(typeof(DefaultDiagnosticsFilter))]
+    //[TypeFilter(typeof(DefaultDiagnosticsFilter))]
     public class HomeController : Controller
     {
         public IActionResult Index()
