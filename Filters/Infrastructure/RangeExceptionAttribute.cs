@@ -15,9 +15,10 @@ namespace Filters.Infrastructure
         {
             if (context.Exception is ArgumentOutOfRangeException)
             {
-                context.Result = new ViewResult() {
+                context.Result = new ViewResult()
+                {
                     ViewName = "Message",
-                    ViewData  = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { Model = "The data received by the application cannot be processed" } 
+                    ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { Model = "The data received by the application cannot be processed" }
                 };
             }
         }

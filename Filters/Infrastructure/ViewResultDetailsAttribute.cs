@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Text;
 
 namespace Filters.Infrastructure
 {
@@ -55,5 +56,14 @@ namespace Filters.Infrastructure
 
             await next();
         }
+
+        //public override async void OnResultExecuted(ResultExecutedContext context)
+        //{
+        //    string controllerName = context.Controller.ToString();
+        //    string actionName = context.ActionDescriptor.DisplayName;
+        //    string message = $@"OnResultExecuted";
+        //    byte[] bytes = Encoding.UTF8.GetBytes(message);
+        //    await context.HttpContext.Response.Body.WriteAsync(bytes);
+        //}
     }
 }
