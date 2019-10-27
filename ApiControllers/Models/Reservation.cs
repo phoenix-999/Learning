@@ -12,5 +12,6 @@ namespace ApiControllers.Models
         public string ClientName { get; set; }
 
         public string Location { get; set; }
+
     }
 }
