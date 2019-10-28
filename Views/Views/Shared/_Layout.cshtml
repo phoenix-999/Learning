@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @RenderSection("Header") <!--Секция должна содержаться непосредственно в представлении запрошенном методом действия. В частичном представлении которое прикрепляеться к запрошенному предаставлению секция обработана не будет.-->
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -10,9 +10,11 @@ namespace Views.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.Message = "Hello, World!";
-            ViewBag.CurrentTime = DateTime.Now;
-            return View("DebugData");
+            //ViewBag.Message = "Hello, World!";
+            //ViewBag.CurrentTime = DateTime.Now;
+            //return View("DebugData");
+
+            return View();
         }
 
         public IActionResult List() => View();
