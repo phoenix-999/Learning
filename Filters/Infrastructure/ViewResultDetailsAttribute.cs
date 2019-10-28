@@ -10,9 +10,9 @@ using System.Text;
 
 namespace Filters.Infrastructure
 {
-    public class ViewResultDetailsAttribute : ResultFilterAttribute
+    public class ViewResultDetailsAttribute : ResultFilterAttribute//Отработает если нет исключения в методе действия или оно было обработано в фильтре пост действия
     {
-        public override void OnResultExecuting(ResultExecutingContext context)//Отработает если нет исключения в методе действия или оно было обработано в фильтре пост действия
+        public override async void OnResultExecuting(ResultExecutingContext context)
         {
             Dictionary<string, string> details = new Dictionary<string, string>();
 
@@ -32,11 +32,9 @@ namespace Filters.Infrastructure
                 };
             }
 
-            context.Result = new ViewResult
-            {
-                ViewName = "Message",
-                ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { Model = "on action executing" }
-            };
+            string message = $@"OnResultExecuting";
+            byte[] bytes = Encoding.UTF8.GetBytes(message);
+            await context.HttpContext.Response.Body.WriteAsync(bytes);
         }
 
         //Стандартная реализация асинхронного метода вызывает свои синхронные аналоги
@@ -63,11 +61,11 @@ namespace Filters.Infrastructure
         //    await next();
         //}
 
-        public override async void OnResultExecuted(ResultExecutedContext context) //Отработает если нету исключения и есть результат действия (свойство Result)
+        public override async void OnResultExecuted(ResultExecutedContext context) 
         {
             string controllerName = context.Controller.ToString();
             string actionName = context.ActionDescriptor.DisplayName;
-            string message = $@"OnResultExecuted {(context.Result as ViewResult).Model.GetType()}";
+            string message = $@"OnResultExecuted {context.Result.GetType()}";
             byte[] bytes = Encoding.UTF8.GetBytes(message);
             await context.HttpContext.Response.Body.WriteAsync(bytes);
         }
