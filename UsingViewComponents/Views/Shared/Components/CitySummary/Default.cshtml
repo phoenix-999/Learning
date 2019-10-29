@@ -1,0 +1,9 @@
+﻿@model IEnumerable<City>
+<table class="table-bordered">
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.Name</td><td>@c.Country</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link asp-href-include="lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
+</head>
+<body class="m-1 р-1">
+    <div class="bg-primary m-1 р-1">
+        <div class="row text-white">
+            <div class="col-7"><hl>Products</hl></div>
+            <div class="col-5">
+                <div class="bg-info text-center m-1 p-l">@await Component.InvokeAsync("CitySummary")</div>
+            </div>
+        </div>
+    </div>
+    <div class="m-1 p-l">@RenderBody()</div>
+</body>
+</html>
