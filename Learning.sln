@@ -185,6 +185,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Views", "Views\Views.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingViewComponents", "UsingViewComponents\UsingViewComponents.csproj", "{8D79E078-F263-4978-B461-AA9EA2045C1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorPagesMovie", "RazorPagesMovie\RazorPagesMovie.csproj", "{B9304E9D-8A6D-494C-87F6-AB810832C8DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -507,6 +509,10 @@ Global
 		{8D79E078-F263-4978-B461-AA9EA2045C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D79E078-F263-4978-B461-AA9EA2045C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D79E078-F263-4978-B461-AA9EA2045C1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9304E9D-8A6D-494C-87F6-AB810832C8DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9304E9D-8A6D-494C-87F6-AB810832C8DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9304E9D-8A6D-494C-87F6-AB810832C8DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9304E9D-8A6D-494C-87F6-AB810832C8DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -568,6 +574,7 @@ Global
 		{89755D54-07EF-4F43-B3CE-F3AF41126AB3} = {7254C5B9-35F0-4B4B-93F5-DB67F11AE115}
 		{CCBA5FB2-C2D1-46D5-9A95-0E19E2CF5534} = {80946349-2AEB-4184-9E10-44D1595D3967}
 		{8D79E078-F263-4978-B461-AA9EA2045C1A} = {80946349-2AEB-4184-9E10-44D1595D3967}
+		{B9304E9D-8A6D-494C-87F6-AB810832C8DD} = {80946349-2AEB-4184-9E10-44D1595D3967}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12BF4283-6EFD-433F-9B74-835D734E5B63}
