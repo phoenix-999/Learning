@@ -27,7 +27,7 @@ namespace Users
         {
             services.AddDbContext<AppUsersDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:ConnectionStrings"]);
+                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
             });
 
             services.AddIdentity<AppUser, IdentityRole>()
