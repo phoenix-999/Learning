@@ -37,8 +37,8 @@ namespace Users.Controllers
                 UserName = createUser.Name,
                 Email = createUser.Email
             };
-            newUser.PasswordHash = passwordHasher.HashPassword(newUser, createUser.Password);
-            IdentityResult result = await userManager.CreateAsync(newUser);
+            //newUser.PasswordHash = passwordHasher.HashPassword(newUser, createUser.Password);// Пароль будет хеширован и установлен пользователю без проверки требований к паролю. Принудительная установка пароля.
+            IdentityResult result = await userManager.CreateAsync(newUser, createUser.Password);//Пароль будет хешироваться с предварительной проверкой к требованиям к паролю
             if (result.Succeeded)
                 return await Task.FromResult<IActionResult>(RedirectToAction("Index"));
             else

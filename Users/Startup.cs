@@ -34,6 +34,13 @@ namespace Users
                 .AddEntityFrameworkStores<AppUsersDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.Configure<IdentityOptions>(opts =>
+            {
+                opts.Password.RequiredLength = 6;
+                opts.Password.RequireDigit = true;
+                opts.Password.RequireUppercase = true;
+            });
+
             services.AddMvc();
         }
 
