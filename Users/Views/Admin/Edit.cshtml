@@ -1,0 +1,27 @@
+﻿@model AppUser
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+<form method="post" asp-action="Edit">
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+    <input  asp-for="Id" type="hidden"/>
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <span asp-validation-for="UserName"></span>
+        <input asp-for="UserName" disabled class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <span asp-validation-for="Email"></span>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" name="password"/>
+    </div>
+    <button class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

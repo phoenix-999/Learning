@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Users.Models;
 using Microsoft.AspNetCore.Identity;
+using Users.Infrastructure;
 
 namespace Users
 {
@@ -34,11 +35,15 @@ namespace Users
                 .AddEntityFrameworkStores<AppUsersDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddTransient<IUserValidator<AppUser>, AppUserValidator>();
+
             services.Configure<IdentityOptions>(opts =>
             {
                 opts.Password.RequiredLength = 6;
                 opts.Password.RequireDigit = true;
                 opts.Password.RequireUppercase = true;
+
+                
             });
 
             services.AddMvc();
