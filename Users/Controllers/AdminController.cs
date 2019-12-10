@@ -118,5 +118,16 @@ namespace Users.Controllers
                 ModelState.AddModelError("", er.Description);
             }
         }
+
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult ValidateUserName(string name)
+        {
+            string[] usersName = (from u in userManager.Users select u.UserName).ToArray();
+            if (usersName.Contains(name))
+            {
+                return Json("Username is already exists");
+            }
+            return Json(true);
+        }
     }
 }
