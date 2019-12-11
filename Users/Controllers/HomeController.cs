@@ -9,7 +9,7 @@ namespace Users.Controllers
 {
     public class HomeController : Controller
     {
-        //[Authorize]
+        [Authorize]
         public IActionResult Index()
         {
             return View(new Dictionary<string, object> {

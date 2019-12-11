@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Users.Models;
 using Microsoft.AspNetCore.Identity;
 using Users.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Users
 {
@@ -42,11 +43,13 @@ namespace Users
                 opts.Password.RequiredLength = 6;
                 opts.Password.RequireDigit = true;
                 opts.Password.RequireUppercase = true;
-
-                
             });
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                //options.Filters.Add(new ValidateAntiForgeryTokenAttribute());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

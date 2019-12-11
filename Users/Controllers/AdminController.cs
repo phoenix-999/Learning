@@ -125,7 +125,7 @@ namespace Users.Controllers
             string[] usersName = (from u in userManager.Users select u.UserName).ToArray();
             if (usersName.Contains(name))
             {
-                return Json("Username is already exists");
+                return Json("<h3>Username is already exists</h3>");
             }
             return Json(true);
         }
