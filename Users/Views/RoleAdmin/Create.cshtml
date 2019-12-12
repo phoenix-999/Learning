@@ -1,0 +1,12 @@
+﻿@model string
+
+<form method="post" asp-action="Create">
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" name="name" value="@Model" />
+    </div>
+    <button class="btn btn-primary" type="submit">Create</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+</form>
+

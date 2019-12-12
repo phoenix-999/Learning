@@ -63,6 +63,7 @@ namespace Users.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         private void AddErrorFromResult(IdentityResult result)
         {
             foreach(var error in result.Errors)
