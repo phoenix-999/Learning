@@ -119,7 +119,6 @@ namespace Users.Controllers
             }
         }
 
-        [AcceptVerbs("GET", "POST")]
         public IActionResult ValidateUserName(string name)
         {
             string[] usersName = (from u in userManager.Users select u.UserName).ToArray();
