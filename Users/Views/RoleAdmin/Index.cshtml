@@ -25,7 +25,7 @@
                 <td>@role.Name</td>
                 <td identity-role="@role.Id"></td>
                 <td>
-                    <a class="btn btn-secondary float-left m-1 p-1" asp-action="Edit" asp-route-id="@role.Id">Edit</a>
+                    <a class="btn btn-secondary float-left m-1 p-1" asp-action="Edit" asp-route-roleId="@role.Id">Edit</a>
                     <form method="post" asp-action="Delete">
                         <input type="hidden" name="id" value="@role.Id" />
                         <button class="btn-danger float-left m-1 p-1" type="submit">Delete</button>
