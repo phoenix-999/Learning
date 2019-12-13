@@ -10,6 +10,13 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 </head>
 <body class="m-1 p-1">
+    <div class="m-1 p-1 bg-info">
+        <a class="btn btn-secondary" asp-action="Index" asp-controller="Home">Start page</a>
+        @if (User?.Identity?.IsAuthenticated ?? false)
+        {
+            <a class="btn btn-secondary float-right" asp-action="Logout" asp-controller="Account">Logout</a>
+        }
+    </div>
     <div>
         @RenderBody()
     </div>

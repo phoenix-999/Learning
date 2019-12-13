@@ -12,9 +12,27 @@ namespace Users.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            return View(new Dictionary<string, object> {
-                ["Placeholder"] = "Placeholder"
-            });
+            return View(GetData(nameof(Index)));
+        }
+
+        [Authorize(Roles = "Users")]
+        public IActionResult OtherAction()
+        {
+            return View(nameof(Index), GetData(nameof(OtherAction)));
+        }
+
+        private Dictionary<string, object> GetData(string actionName)
+        {
+            Dictionary<string, object> result = new Dictionary<string, object>
+            {
+                ["Action name"] = actionName,
+                ["User"] = User.Identity.Name,
+                ["Authenticated"] = User.Identity.IsAuthenticated,
+                ["Auth type"] = User.Identity.AuthenticationType,
+                ["In Users role"] = User.IsInRole("Users")
+            };
+
+            return result;
         }
     }
 }
