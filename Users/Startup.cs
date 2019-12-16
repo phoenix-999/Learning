@@ -60,6 +60,8 @@ namespace Users
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
+
+            //AppUsersDbContext.CreateDefaultAdminUser(app, Configuration).Wait(); //Необходимо отключать при создании миграции. Вероятно проет будет запущени и метод начнет выполнения, но схема БД на сервере и в приложения различается.
         }
     }
 }

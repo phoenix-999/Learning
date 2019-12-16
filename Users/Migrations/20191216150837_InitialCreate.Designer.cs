@@ -10,8 +10,8 @@ using Users.Models;
 namespace Users.Migrations
 {
     [DbContext(typeof(AppUsersDbContext))]
-    [Migration("20191210095452_Initial")]
-    partial class Initial
+    [Migration("20191216150837_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -138,6 +138,8 @@ namespace Users.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<int>("City");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -161,6 +163,8 @@ namespace Users.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<int>("Qualifications");
 
                     b.Property<string>("SecurityStamp");
 
