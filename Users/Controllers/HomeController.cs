@@ -24,7 +24,7 @@ namespace Users.Controllers
             return View(GetData(nameof(Index)));
         }
 
-        [Authorize(Roles = "Users")]
+        [Authorize(Policy = "DCUsers")]
         public IActionResult OtherAction()
         {
             return View(nameof(Index), GetData(nameof(OtherAction)));

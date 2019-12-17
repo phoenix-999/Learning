@@ -12,6 +12,8 @@ using Users.Models;
 using Microsoft.AspNetCore.Identity;
 using Users.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace Users
 {
@@ -27,6 +29,7 @@ namespace Users
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<AppUsersDbContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
@@ -37,6 +40,15 @@ namespace Users
                 .AddDefaultTokenProviders();
 
             services.AddTransient<IUserValidator<AppUser>, AppUserValidator>();
+            services.AddSingleton<IClaimsTransformation, LocationClaimsProvider>();
+
+            services.AddAuthorization(opts => {
+                opts.AddPolicy("DCUsers", policy =>
+                {
+                    policy.RequireRole("Users");
+                    policy.RequireClaim(ClaimTypes.StateOrProvince, "DC");
+                });
+            });
 
             services.Configure<IdentityOptions>(opts =>
             {
