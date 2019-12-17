@@ -14,6 +14,8 @@ using Users.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Users.Infrastructure.Requirements;
 
 namespace Users
 {
@@ -40,6 +42,8 @@ namespace Users
                 .AddDefaultTokenProviders();
 
             services.AddTransient<IUserValidator<AppUser>, AppUserValidator>();
+            services.AddTransient<IAuthorizationHandler, BlockUsersHandler>();
+
             services.AddSingleton<IClaimsTransformation, LocationClaimsProvider>();
 
             services.AddAuthorization(opts => {
@@ -47,6 +51,12 @@ namespace Users
                 {
                     policy.RequireRole("Users");
                     policy.RequireClaim(ClaimTypes.StateOrProvince, "DC");
+                });
+
+                opts.AddPolicy("NotBob", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.AddRequirements(new BlockUsersRequirement("Bob"));
                 });
             });
 
