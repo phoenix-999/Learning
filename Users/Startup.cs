@@ -43,6 +43,7 @@ namespace Users
 
             services.AddTransient<IUserValidator<AppUser>, AppUserValidator>();
             services.AddTransient<IAuthorizationHandler, BlockUsersHandler>();
+            services.AddTransient<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
             services.AddSingleton<IClaimsTransformation, LocationClaimsProvider>();
 
@@ -57,6 +58,12 @@ namespace Users
                 {
                     policy.RequireAuthenticatedUser();
                     policy.AddRequirements(new BlockUsersRequirement("Bob"));
+                });
+
+                opts.AddPolicy("AuthorsAndEditors", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.AddRequirements(new DocumentAuthorizationRequirement() { AllowAuthors = true, AllowEditors = true});
                 });
             });
 

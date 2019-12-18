@@ -62,6 +62,7 @@ namespace Users.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+        [Authorize(Policy = "NotBob")]
+        public IActionResult NotBob() => View("Index", GetData(nameof(NotBob)));
     }
 }
