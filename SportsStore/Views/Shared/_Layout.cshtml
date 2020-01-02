@@ -7,8 +7,16 @@
     <link rel="stylesheet" asp-href-include="~/lib/bootstrap/dist/**/*.min.css" />
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <div class="navbar" role="navigation">
+        <a class="navbar-brand" href="#">SportsStore</a>
+    </div>
+    <div class="row m-1 p-1">
+        <div id="categories" class="col-3">
+            Put something usefull here later...
+        </div>
+        <div class="col-9">
+            @RenderBody()
+        </div>
     </div>
 </body>
 </html>
